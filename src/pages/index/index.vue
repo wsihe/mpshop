@@ -1,7 +1,7 @@
 <template>
   <div class="container" @click="clickHandle('test click', $event)">
 
-    <div class="userinfo" @click="bindViewTap">
+    <div class="userinfo">
       <img class="userinfo-avatar" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover" />
       <div class="userinfo-nickname">
         <card :text="userInfo.nickName"></card>
@@ -10,15 +10,9 @@
 
     <div class="usermotto">
       <div class="user-motto">
-        <card :text="motto"></card>
+        <button> 开始游戏 </button>
       </div>
     </div>
-      
-    <form class="form-container">
-      <input type="text" class="form-control" v-model="motto" placeholder="v-model" />
-      <input type="text" class="form-control" v-model.lazy="motto" placeholder="v-model.lazy" />
-    </form>
-
   </div>
 </template>
 
@@ -62,7 +56,13 @@ export default {
   created () {
     // 调用应用实例的方法获取全局数据
     this.getUserInfo()
+  },
+
+  onShow () {
+    // `this` 指向 vm 实例
+    console.log('motto is: ' + this.motto, '小程序触发的 onshow')
   }
+
 }
 </script>
 
