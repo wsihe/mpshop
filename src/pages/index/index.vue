@@ -1,18 +1,17 @@
 <template>
-  <div class="container" @click="clickHandle('test click', $event)">
-
-    <div class="userinfo">
-      <img class="userinfo-avatar" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover" />
-      <div class="userinfo-nickname">
-        <card :text="userInfo.nickName"></card>
-      </div>
+  <div class="container" @click="bindViewTap">
+    <div class="home-banner">
+      <img class="banner-img" mode="aspectFit" :src="srcUrl"/>
     </div>
-
-    <div class="usermotto">
-      <div class="user-motto">
-        <button> 开始游戏 </button>
-      </div>
-    </div>
+    <ul class="products">
+      <li class="products-item">
+        <img class="" mode="scaleToFill" :src="itemUrl"/>
+        <div class="products-right">
+          <span class="product-title">农家蜂蜜</span>
+          <span class="product-desc">自家产的土蜂蜜，没任何加工添加</span>
+        </div>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -22,6 +21,8 @@ import card from '@/components/card'
 export default {
   data () {
     return {
+      srcUrl: require('@/assets/images/bg.png'),
+      itemUrl: require('@/assets/images/fengmi.png'),
       motto: 'Hello World',
       userInfo: {}
     }
@@ -33,8 +34,8 @@ export default {
 
   methods: {
     bindViewTap () {
-      const url = '../logs/logs'
-      wx.navigateTo({ url })
+      // const url = '../logs/logs'
+      // wx.navigateTo({ url })
     },
     getUserInfo () {
       // 调用登录接口
@@ -56,42 +57,41 @@ export default {
   created () {
     // 调用应用实例的方法获取全局数据
     this.getUserInfo()
-  },
-
-  onShow () {
-    // `this` 指向 vm 实例
-    console.log('motto is: ' + this.motto, '小程序触发的 onshow')
   }
 
 }
 </script>
 
 <style scoped>
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+  .banner-img {
+    margin-top: -10rpx;
+    width: 750rpx;
+    height: 270rpx
+  }
+  .products-item {
+    margin: 20rpx;
+    padding: 10rpx;
+    background: #fff;
+  }
+  .products-item img {
+    width: 200rpx;
+    height: 150rpx;
+  }
+  .products-right {
+    display: inline-block;
+    vertical-align: top;
+  }
+  .product-title {
+    margin-left: 10rpx;
+    font-size: 14px;
+    color: #666;
+  }
+  .product-desc {
+    display: block;
+    margin-top: 10rpx;
+    margin-left: 10rpx;
+    font-size: 12px;
+    color: #999;
+  }
 
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
-}
-
-.userinfo-nickname {
-  color: #aaa;
-}
-
-.usermotto {
-  margin-top: 150px;
-}
-
-.form-control {
-  display: block;
-  padding: 0 12px;
-  margin-bottom: 5px;
-  border: 1px solid #ccc;
-}
 </style>
