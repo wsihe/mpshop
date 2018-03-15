@@ -11,6 +11,13 @@
           <span class="product-desc">自家产的土蜂蜜，没任何加工添加</span>
         </div>
       </li>
+      <li class="products-item">
+        <img class="" mode="scaleToFill" :src="itemUrl"/>
+        <div class="products-right">
+          <span class="product-title">农家蜂蜜</span>
+          <span class="product-desc">自家产的土蜂蜜，没任何加工添加</span>
+        </div>
+      </li>
     </ul>
   </div>
 </template>
@@ -69,9 +76,11 @@ export default {
     height: 270rpx
   }
   .products-item {
+    border-radius: 4px;
     margin: 20rpx;
     padding: 10rpx;
     background: #fff;
+    box-shadow: 0 6px 25px 0 rgba(182,182,182,0.30);
   }
   .products-item img {
     width: 200rpx;
