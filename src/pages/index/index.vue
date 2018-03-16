@@ -10,7 +10,7 @@
           <span class="product-title">农家蜂蜜</span>
           <span class="product-desc">自家产的土蜂蜜，没任何加工添加</span>
         </div>
-        <card></card>
+        <like></like>
       </li>
       <li class="products-item">
         <img class="" mode="scaleToFill" :src="itemUrl"/>
@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import card from '@/components/card'
+import like from '@/components/like'
 
 export default {
   data () {
@@ -35,7 +35,7 @@ export default {
   },
 
   components: {
-    card
+    like
   },
 
   created () {
