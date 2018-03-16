@@ -38,7 +38,8 @@ module.exports = {
     alias: {
       'vue': 'mpvue',
       '@': resolve('src'),
-      'images': resolve('src/assets/images')
+      'images': resolve('src/assets/images'),
+      'components': resolve('src/components')
     },
     symlinks: false
   },

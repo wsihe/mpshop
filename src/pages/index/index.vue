@@ -10,6 +10,7 @@
           <span class="product-title">农家蜂蜜</span>
           <span class="product-desc">自家产的土蜂蜜，没任何加工添加</span>
         </div>
+        <card></card>
       </li>
       <li class="products-item">
         <img class="" mode="scaleToFill" :src="itemUrl"/>
@@ -29,9 +30,7 @@ export default {
   data () {
     return {
       srcUrl: require('@/assets/images/bg.png'),
-      itemUrl: require('@/assets/images/fengmi.png'),
-      motto: 'Hello World',
-      userInfo: {}
+      itemUrl: require('@/assets/images/fengmi.png')
     }
   },
 
@@ -39,31 +38,17 @@ export default {
     card
   },
 
+  created () {
+  },
+
   methods: {
     bindViewTap () {
       // const url = '../logs/logs'
       // wx.navigateTo({ url })
     },
-    getUserInfo () {
-      // 调用登录接口
-      wx.login({
-        success: () => {
-          wx.getUserInfo({
-            success: (res) => {
-              this.userInfo = res.userInfo
-            }
-          })
-        }
-      })
-    },
     clickHandle (msg, ev) {
       console.log('clickHandle:', msg, ev)
     }
-  },
-
-  created () {
-    // 调用应用实例的方法获取全局数据
-    this.getUserInfo()
   }
 
 }
