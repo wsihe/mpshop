@@ -2,9 +2,10 @@
   <div class="wu-like">
     <img class="wu-like-img" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" />
     <span class="wu-like-tip">river..等20人觉得赞</span>
-    <div :class="addCls" @click="handleClick">
+    <div class="wu-like-add" :class="addCls" @click="handleClick">
       <transition name="fade">
-        <p class="wu-like-show" v-if="show">+1</p>
+        <p class="wu-like-show" v-if="show && alreadyTap">+1</p>
+        <p class="wu-like-show" v-if="show && !alreadyTap">-1</p>
       </transition>
     </div>
   </div>
@@ -29,10 +30,7 @@ export default {
 
   computed: {
     addCls () {
-      return [
-        'wu-like-add',
-        {[`active`]: this.alreadyTap}
-      ]
+      return this.alreadyTap ? 'active' : ''
     }
   },
 
@@ -50,7 +48,7 @@ export default {
       })
     },
     handleClick () {
-      this.alreadyTap = true
+      this.alreadyTap = !this.alreadyTap
       this.show = true
       setTimeout(() => {
         this.show = false
@@ -87,7 +85,11 @@ export default {
     background-size: 100%;
   }
   .wu-like-add.active {
-    background: url("../../assets/icons/icon_like.png");
+    background: url("../../assets/icons/icon_like_hl.png");
+    background-size: 100%;
+  }
+  .wu-like-add.active .wu-like-show{
+    color: #3cc51f;
   }
   .wu-like-show {
     position: absolute;
