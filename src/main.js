@@ -12,6 +12,7 @@ export default {
   config: {
     // 页面前带有 ^ 符号的，会被编译成首页
     pages: [
+      'pages/productDetail/productDetail',
       '^pages/index/index'
     ],
     window: {

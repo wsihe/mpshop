@@ -1,6 +1,12 @@
 <template>
-  <div class="userinfo">
-    <img class="userinfo-img" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" />
+  <div class="wu-like">
+    <img class="wu-like-img" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" />
+    <span class="wu-like-tip">river..等20人觉得赞</span>
+    <div :class="addCls" @click="handleClick">
+      <transition name="fade">
+        <p class="wu-like-show" v-if="show">+1</p>
+      </transition>
+    </div>
   </div>
 </template>
 
@@ -11,12 +17,23 @@ export default {
 
   data () {
     return {
-      userInfo: {}
+      userInfo: {},
+      show: false,
+      alreadyTap: false
     }
   },
 
   created () {
     this.getUserInfo()
+  },
+
+  computed: {
+    addCls () {
+      return [
+        'wu-like-add',
+        {[`active`]: this.alreadyTap}
+      ]
+    }
   },
 
   methods: {
@@ -32,23 +49,57 @@ export default {
         }
       })
     },
-    clickHandle (msg, ev) {
-      console.log('clickHandle:', msg, ev)
+    handleClick () {
+      this.alreadyTap = true
+      this.show = true
+      setTimeout(() => {
+        this.show = false
+      }, 500)
     }
   }
 }
 </script>
 
 <style>
-  .userinfo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .wu-like {
+    position: relative;
   }
-  .userinfo-img {
-    width: 28rpx;
-    height: 28rpx;
-    margin: 10rpx;
+  .wu-like-img {
+    width: 40rpx;
+    height: 40rpx;
     border-radius: 50%;
+  }
+  .wu-like-tip {
+    margin-left: 10rpx;
+    vertical-align: top;
+    height: 40rpx;
+    line-height: 40rpx;
+    font-size: 14px;
+    color: #999;
+  }
+  .wu-like-add {
+    position: absolute;
+    top: 0;
+    right: 20rpx;
+    width: 35rpx;
+    height: 35rpx;
+    background: url("../../assets/icons/icon_like.png");
+    background-size: 100%;
+  }
+  .wu-like-add.active {
+    background: url("../../assets/icons/icon_like.png");
+  }
+  .wu-like-show {
+    position: absolute;
+    top: -25rpx;
+    left: 2rpx;
+    font-size: 12px;
+    color: #999;
+  }
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+  }
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
   }
 </style>
