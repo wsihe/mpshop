@@ -61,26 +61,27 @@ export default {
 <style>
   .wu-like {
     position: relative;
+    margin-top: 20rpx;
   }
   .wu-like-img {
-    width: 40rpx;
-    height: 40rpx;
+    width: 50rpx;
+    height: 50rpx;
     border-radius: 50%;
   }
   .wu-like-tip {
     margin-left: 10rpx;
     vertical-align: top;
-    height: 40rpx;
-    line-height: 40rpx;
+    height: 50rpx;
+    line-height: 50rpx;
     font-size: 14px;
     color: #999;
   }
   .wu-like-add {
     position: absolute;
-    top: 0;
+    top: 2rpx;
     right: 20rpx;
-    width: 35rpx;
-    height: 35rpx;
+    width: 45rpx;
+    height: 45rpx;
     background: url("../../assets/icons/icon_like.png");
     background-size: 100%;
   }
@@ -94,7 +95,7 @@ export default {
   .wu-like-show {
     position: absolute;
     top: -25rpx;
-    left: 2rpx;
+    left: 10rpx;
     font-size: 12px;
     color: #999;
   }
