@@ -1,6 +1,12 @@
 <template>
   <div>
-     详情页
+    <swiper :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
+      <block v-for="(item, index) in imgUrls" :key="index">
+        <swiper-item>
+          <image :src="item" class="slide-image" width="355" height="250"/>
+        </swiper-item>
+      </block>
+    </swiper>
   </div>
 </template>
 
@@ -9,7 +15,15 @@
 export default {
   data () {
     return {
-      logs: []
+      imgUrls: [
+        require('@/assets/images/bg.png'),
+        require('@/assets/images/bg.png'),
+        require('@/assets/images/bg.png')
+      ],
+      indicatorDots: true,
+      autoplay: false,
+      interval: 5000,
+      duration: 1000
     }
   },
 

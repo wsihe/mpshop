@@ -123,5 +123,11 @@ export default {
     background: url("../../assets/icons/icon_hot.png");
     background-size: cover;
   }
+  .slide-image {
+    position:relative;
+    align-items:center;
+    justify-content:center;
+  }
+
 
 </style>

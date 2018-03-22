@@ -18,7 +18,7 @@ export default {
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#3cc51f',
-      navigationBarTitleText: '农家小卖部',
+      navigationBarTitleText: '家有特产',
       navigationBarTextStyle: '#fff'
     },
     tabBar: {
