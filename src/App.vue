@@ -11,17 +11,19 @@ export default {
 }
 </script>
 
-<style>
-.container {
-  height: 100%;
-  box-sizing: border-box;
-  background: #f2f2f2;
-}
-/* this rule will be remove */
-* {
-  transition: width 2s;
-  -moz-transition: width 2s;
-  -webkit-transition: width 2s;
-  -o-transition: width 2s;
-}
+<style lang="scss">
+  @import "style/index.scss";
+
+  .container {
+    height: 100%;
+    box-sizing: border-box;
+    background: #f2f2f2;
+  }
+  /* this rule will be remove */
+  * {
+    transition: width 2s;
+    -moz-transition: width 2s;
+    -webkit-transition: width 2s;
+    -o-transition: width 2s;
+  }
 </style>

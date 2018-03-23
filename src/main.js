@@ -1,8 +1,11 @@
 import Vue from 'vue'
 import App from './App'
+// import Wuui from './components'
 
 Vue.config.productionTip = false
 App.mpType = 'app'
+
+// Vue.use(Wuui)
 
 const app = new Vue(App)
 app.$mount()
@@ -34,13 +37,13 @@ export default {
           text: '首页'
         },
         {
-          pagePath: 'pages/logs/logs',
+          pagePath: 'pages/cart/cart',
           iconPath: 'static/img/icon_cart.png',
           selectedIconPath: 'static/img/icon_cart_hl.png',
           text: '购物车'
         },
         {
-          pagePath: 'pages/logs/logs',
+          pagePath: 'pages/customer/customer',
           iconPath: 'static/img/icon_my.png',
           selectedIconPath: 'static/img/icon_my_hl.png',
           text: '我的'
