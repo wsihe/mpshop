@@ -68,7 +68,7 @@ export default {
 
   methods: {
     bindViewTap () {
-      const url = '../productDetail/productDetail'
+      const url = '../goods/goods'
       wx.navigateTo({ url })
     }
   }

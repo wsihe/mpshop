@@ -1,6 +1,6 @@
 <template>
   <div>
-    <wu-icon name="success"></wu-icon>
+    <wu-icon name="success" ></wu-icon>
     购物车
   </div>
 </template>

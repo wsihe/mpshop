@@ -7,12 +7,21 @@
         </swiper-item>
       </block>
     </swiper>
+    <div class="wu-goods-action">
+      <goods-action-btn size="mini" icon="chat" text="客服"></goods-action-btn>
+      <goods-action-btn size="mini" icon="cart" text="购物车"></goods-action-btn>
+      <goods-action-btn size="big" text="加入购物车"></goods-action-btn>
+      <goods-action-btn size="big" text="立即购买" primary></goods-action-btn>
+    </div>
   </div>
 </template>
 
 <script>
+import GoodsActionBtn from '../../components/goods-action/index'
 
 export default {
+  components: { GoodsActionBtn },
+
   data () {
     return {
       imgUrls: [
@@ -33,9 +42,4 @@ export default {
 </script>
 
 <style>
-.log-list {
-  display: flex;
-  flex-direction: column;
-  padding: 40rpx;
-}
 </style>

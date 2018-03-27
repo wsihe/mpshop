@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App'
-// import Wuui from './components'
+// import Wuui from './components/index'
 
 Vue.config.productionTip = false
 App.mpType = 'app'
@@ -15,7 +15,7 @@ export default {
   config: {
     // 页面前带有 ^ 符号的，会被编译成首页
     pages: [
-      'pages/productDetail/productDetail',
+      'pages/goods/goods',
       '^pages/index/index'
     ],
     window: {

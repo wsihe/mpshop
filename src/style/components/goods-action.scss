@@ -1,0 +1,60 @@
+@import './common/var.scss';
+
+.wu-goods-action {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  position: fixed;
+
+  &__big-btn {
+    flex: 1;
+    padding: 0;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #f85;
+    text-align: center;
+
+    @media(max-width: 321px) {
+      font-size: 15px;
+    }
+  }
+
+  &__primary {
+    background-color: #f44;
+  }
+
+  &__mini-btn {
+    color: $gray-darker;
+    display: flex;
+    height: 50px;
+    font-size: 10px;
+    min-width: 15%;
+    line-height: 1;    
+    text-align: center;
+    background-color: $white;
+    flex-direction: column;
+    justify-content: center;
+
+    &::after {
+      border-width: 1px 0 0 1px;
+    }
+
+    &:first-child::after {
+      border-left-width: 0;
+    }
+
+    &:active {
+      background-color: $active-color;
+    }
+
+    .wu-icon {
+      position: relative;
+      font-size: 20px;
+      margin-bottom: 5px;
+    }
+  }
+}

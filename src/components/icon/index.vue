@@ -1,6 +1,7 @@
 <template>
-  <i class="van-icon" :class="iconCls" v-on="$listeners">
-    <div v-if="info" class="van-icon__info">{{ info }}</div>
+  <i class="wu-icon" :class="iconCls" v-on="$listeners">
+    <slot></slot>
+    <div v-if="info" class="wu-icon__info">{{ info }}</div>
   </i>
 </template>
 
@@ -16,7 +17,7 @@ export default {
 
   computed: {
     iconCls () {
-      return `van-icon-${this.name}`
+      return `wu-icon-${this.name}`
     }
 
   }

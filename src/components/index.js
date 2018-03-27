@@ -1,19 +1,19 @@
+import Vue from 'vue'
 import Icon from './icon'
 
 const components = [
   Icon
 ]
 
-const install = function (Vue, opts = {}) {
+const install = function (opts = {}) {
   if (install.installed) return
   components.map(component => {
-    Vue.component(component.name, component)
+    console.log(component)
+    Vue.component('wu-icon', component)
   })
 }
 
-if (typeof window !== 'undefined' && window.Vue) {
-  install(window.Vue)
-}
+install()
 
 export default {
   version: '0.0.1',
