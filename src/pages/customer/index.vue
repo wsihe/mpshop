@@ -1,5 +1,5 @@
 <template>
-  <div class="page-customer">
+  <div class="customer">
 
     <div class="userinfo">
       <img class="userinfo-avatar" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover" />
@@ -8,15 +8,56 @@
       </div>
     </div>
 
-    <div class="page-customer-card">
-      <div class="page-customer-card-content"></div>
+    <div class="customer-card">
+      <div class="customer-card-content">
+        <div class="wu-row user-links">
+          <wu-col span="6">
+            <i class="wu-icon wu-icon-pending-payment"></i>
+            待付款
+          </wu-col>
+          <wu-col span="6">
+            <i class="wu-icon wu-icon-pending-orders"></i>
+            待接单
+          </wu-col>
+          <wu-col span="6">
+            <i class="wu-icon wu-icon-pending-deliver"></i>
+            待发货
+          </wu-col>
+          <wu-col span="6">
+            <i class="wu-icon wu-icon-logistics"></i>
+            待发货
+          </wu-col>
+        </div>
+      </div>
+    </div>
+
+    <div class="wu-cell-group wu-hairline--top-bottom">
+      <div class="wu-cell wu-hairline wu-cell--clickable">
+        <div class="wu-cell__title">
+          <wu-icon name="records"></wu-icon>
+          <span class="wu-cell__text">全部订单</span>
+        </div>
+        <div class="wu-cell__right-icon">
+          <wu-icon name="arrow"></wu-icon>
+        </div>
+      </div>
+      <div class="wu-cell wu-hairline wu-cell--clickable">
+        <div class="wu-cell__title">
+          <wu-icon name="gold-coin"></wu-icon>
+          <span class="wu-cell__text">我的优惠券</span>
+        </div>
+        <div class="wu-cell__right-icon">
+          <wu-icon name="arrow"></wu-icon>
+        </div>
+      </div>
     </div>
 
   </div>
 </template>
 
 <script>
-  import card from '@/components/card'
+  import WuCol from 'components/col'
+  import WuIcon from 'components/icon'
 
   export default {
     data () {
@@ -27,7 +68,8 @@
     },
 
     components: {
-      card
+      WuIcon,
+      WuCol
     },
 
     methods: {
@@ -55,8 +97,9 @@
   }
 </script>
 
-<style scoped>
-  page-customer {
+<style lang="scss">
+  .customer {
+    background: #f2f2f2;
   }
   .userinfo {
     display: flex;
@@ -78,19 +121,33 @@
     color: #fff;
   }
 
-  .page-customer-card {
+  .customer-card {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  .page-customer-card-content {
+  .customer-card-content {
     position: relative;
     top: -20rpx;
     width: 650rpx;
-    height: 200rpx;
+    height: 165rpx;
     border-radius: 15rpx;
     background-color: #fff;
     box-shadow: 0 2px 8px 0 rgba(213,213,213,0.60);
+  }
+
+  .user {
+    &-links {
+      margin-top: 10px;
+      padding: 15px 0;
+      font-size: 12px;
+      text-align: center;
+      background-color: #fff;
+      .wu-icon {
+        display: block;
+        font-size: 24px;
+      }
+    }
   }
 
 </style>

@@ -1,0 +1,11 @@
+@import './common/var.scss';
+
+.wu-col {
+  float: left;
+  box-sizing: border-box;
+}
+
+@for $i from 1 to 24 {
+  .wu-col-#{$i} { width: calc(#{$i} * 100% / 24); }
+  .wu-col-offset-#{$i} { margin-left: calc(#{$i} * 100% / 24); }
+}

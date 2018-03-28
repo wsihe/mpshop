@@ -10,13 +10,12 @@
     <ul class="products">
       <li class="products-item">
         <div @click="bindViewTap">
-          <img class="" mode="scaleToFill" :src="itemUrl"/>
+          <img class="products-item-img" mode="scaleToFill" :src="itemUrl"/>
           <div class="products-right">
             <text class="product-title">纯正蜂蜜</text>
             <span class="product-desc">自家产的土蜂蜜，没任何加工添加</span>
             <div class="product-status">
-              <i class="new"></i>
-              <i class="hot"></i>
+              <wu-icon name="hot-sale"></wu-icon>
             </div>
           </div>
         </div>
@@ -24,12 +23,12 @@
       </li>
       <li class="products-item">
         <div @click="bindViewTap">
-          <img class="" mode="scaleToFill" :src="itemUrl"/>
+          <img class="products-item-img" mode="scaleToFill" :src="itemUrl"/>
           <div class="products-right">
             <text class="product-title">新鲜荔枝</text>
             <span class="product-desc">新鲜上市的荔枝，接受预定</span>
             <div class="product-status">
-              <i class="hot"></i>
+              <wu-icon name="new-arrival"></wu-icon>
             </div>
           </div>
         </div>
@@ -40,7 +39,8 @@
 </template>
 
 <script>
-import like from '@/components/like'
+import like from 'components/like'
+import WuIcon from 'components/icon/index'
 
 export default {
   data () {
@@ -60,6 +60,7 @@ export default {
   },
 
   components: {
+    WuIcon,
     like
   },
 
@@ -76,18 +77,19 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss">
   .products-item {
     border-radius: 4px;
     margin: 20rpx;
     padding: 10rpx;
     background: #fff;
     box-shadow: 0 6px 25px 0 rgba(182,182,182,0.30);
+    .products-item-img {
+      width: 100%;
+      height: 250rpx;
+    }
   }
-  .products-item img {
-    width: 100%;
-    height: 250rpx;
-  }
+
   .products-right {
     position: relative;
     padding: 10rpx 10rpx 20rpx;
@@ -108,21 +110,17 @@ export default {
     position: absolute;
     top: 10rpx;
     right: 10px;
+    .wu-icon {
+      font-size: 24px;
+    }
+    .wu-icon-new-arrival {
+      color: #3cc51f;
+    }
+    .wu-icon-hot-sale {
+      color: red;
+    }
   }
-  .product-status i {
-    display: inline-block;
-    margin-left: 10rpx;
-    width: 71rpx;
-    height: 41rpx;
-  }
-  .product-status i.new {
-    background: url("../../assets/icons/icon_new.png");
-    background-size: cover;
-  }
-  .product-status i.hot {
-    background: url("../../assets/icons/icon_hot.png");
-    background-size: cover;
-  }
+
   .slide-image {
     position:relative;
     align-items:center;

@@ -1,7 +1,15 @@
 <template>
   <div>
-    <wu-icon name="success" ></wu-icon>
-    购物车
+    <div class="wu-submit-bar">
+      <div class="wu-submit-bar__bar">
+        <div class="wu-submit-bar__price">
+          <span class="wu-submit-bar__price-text">合计：</span>
+          <span class="wu-submit-bar__price-interger">¥35.</span>
+          <span class="wu-submit-bar__price-decimal">70</span>
+        </div>
+        <a class="">结算</a>
+      </div>
+    </div>
   </div>
 </template>
 

@@ -1,14 +1,13 @@
 import Vue from 'vue'
 import App from './App'
-// import Wuui from './components/index'
+import initWuui from './components/index'
 
 Vue.config.productionTip = false
 App.mpType = 'app'
 
-// Vue.use(Wuui)
-
 const app = new Vue(App)
 app.$mount()
+initWuui()
 
 export default {
   // 这个字段走 app.json

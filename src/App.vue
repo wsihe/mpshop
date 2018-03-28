@@ -15,7 +15,10 @@ export default {
   @import "style/index.scss";
 
   .container {
-    height: 100%;
+    display:flex;
+    flex-direction:column;
+    min-height:100%;
+    justify-content: space-between;
     box-sizing: border-box;
     background: #f2f2f2;
   }
