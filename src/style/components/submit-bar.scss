@@ -44,7 +44,7 @@
     font-size: 12px;
   }
 
-  .van-button {
+  .wu-button {
     width: 110px;
     height: 100%;
     border-radius: 0;
@@ -53,9 +53,23 @@
       border: none;
     }
 
-    .van-loading__spinner--white {
+    .wu-loading__spinner--white {
       border-color: rgba(255,255,255, .8);
       border-top-color: transparent;
     }
+  }
+
+  &__btn {
+    position: relative;
+    padding: 0;
+    display: inline-block;
+    line-height: 45px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    text-align: center;
+    color: #fff;
+    background-color: #f44;
+    border: 1px solid #e33;
   }
 }

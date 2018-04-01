@@ -123,6 +123,7 @@ export default {
 
   .slide-image {
     position:relative;
+    width: 100%;
     align-items:center;
     justify-content:center;
   }

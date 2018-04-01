@@ -1,13 +1,14 @@
 <template>
-  <div>
+  <div class="cart">
+    <div>da</div>
     <div class="wu-submit-bar">
       <div class="wu-submit-bar__bar">
-        <div class="wu-submit-bar__price">
+        <div class="wu-submit-bar__price wu-hairline--top">
           <span class="wu-submit-bar__price-text">合计：</span>
           <span class="wu-submit-bar__price-interger">¥35.</span>
           <span class="wu-submit-bar__price-decimal">70</span>
         </div>
-        <a class="">结算</a>
+        <a class="wu-button wu-submit-bar__btn">结算</a>
       </div>
     </div>
   </div>
@@ -35,14 +36,15 @@ export default {
 }
 </script>
 
-<style>
-.log-list {
-  display: flex;
-  flex-direction: column;
-  padding: 40rpx;
-}
-
-.log-item {
-  margin: 10rpx;
-}
+<style lang="scss">
+  page {
+    background-color: #f2f2f2;
+    height:100%;
+  }
+  .cart {
+    display: block;
+    min-height: 100%;
+    background-color: #f2f2f2;
+    background-size: 100% 100%;
+  }
 </style>

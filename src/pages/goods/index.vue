@@ -3,7 +3,7 @@
     <swiper :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
       <block v-for="(item, index) in imgUrls" :key="index">
         <swiper-item>
-          <image :src="item" class="slide-image" width="355" height="250"/>
+          <image :src="item" class="slide-image" width="375" height="240"/>
         </swiper-item>
       </block>
     </swiper>
@@ -92,6 +92,18 @@ export default {
         color: #999;
       }
     }
+
+    swiper {
+      height: 240px;
+    }
+
+    .slide-image {
+      position:relative;
+      width: 100%;
+      align-items:center;
+      justify-content:center;
+    }
+
   }
 
 </style>
