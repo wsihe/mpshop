@@ -1,6 +1,6 @@
 <template>
   <div class="cart">
-    <div>da</div>
+    <wu-card title="标题" desc="描述" num="2" price="2.00"></wu-card>
     <div class="wu-submit-bar">
       <div class="wu-submit-bar__bar">
         <div class="wu-submit-bar__price wu-hairline--top">
@@ -16,10 +16,12 @@
 
 <script>
 import { formatTime } from '@/utils/index'
-import wuIcon from '@/components/icon'
+import wuIcon from 'components/icon'
+import WuCard from 'components/card'
 
 export default {
   components: {
+    WuCard,
     wuIcon
   },
 
