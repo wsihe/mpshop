@@ -1,41 +1,28 @@
-<template>
-  <div class="container">
-    <swiper :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
-      <block v-for="(item, index) in imgUrls" :key="index">
-        <swiper-item>
-          <image :src="item" class="slide-image" width="355" height="150"/>
-        </swiper-item>
-      </block>
-    </swiper>
-    <ul class="products">
-      <li class="products-item">
-        <div @click="bindViewTap">
-          <img class="products-item-img" mode="scaleToFill" :src="itemUrl"/>
-          <div class="products-right">
-            <text class="product-title">纯正蜂蜜</text>
-            <span class="product-desc">自家产的土蜂蜜，没任何加工添加</span>
-            <div class="product-status">
-              <wu-icon name="hot-sale"></wu-icon>
-            </div>
-          </div>
-        </div>
-        <like></like>
-      </li>
-      <li class="products-item">
-        <div @click="bindViewTap">
-          <img class="products-item-img" mode="scaleToFill" :src="itemUrl"/>
-          <div class="products-right">
-            <text class="product-title">新鲜荔枝</text>
-            <span class="product-desc">新鲜上市的荔枝，接受预定</span>
-            <div class="product-status">
-              <wu-icon name="new-arrival"></wu-icon>
-            </div>
-          </div>
-        </div>
-        <like></like>
-      </li>
-    </ul>
-  </div>
+<template lang="pug">
+  .container
+    swiper(:indicator-dots="indicatorDots", :autoplay="autoplay", :interval="interval", :duration="duration")
+      block(v-for="(item, index) in imgUrls", :key="index")
+        swiper-item
+          image.slide-image(:src="item", width="355", height="150")
+    ul.products
+      li.products-item
+        div(@click="bindViewTap")
+          img.products-item-img(mode="scaleToFill", :src="itemUrl")
+          .products-right
+            text.product-title 纯正蜂蜜
+            span.product-desc 自家产的土蜂蜜，没任何加工添加
+            .product-status
+              wu-icon(name="hot-sale")
+        like
+      li.products-item
+        div(@click="bindViewTap")
+          img.products-item-img(mode="scaleToFill", :src="itemUrl")
+          .products-right
+            text.product-title 新鲜荔枝
+            span.product-desc 新鲜上市的荔枝，接受预定
+            .product-status
+              wu-icon(name="new-arrival")
+        like
 </template>
 
 <script>

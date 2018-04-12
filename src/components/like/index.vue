@@ -1,19 +1,24 @@
-<template>
-  <div class="wu-like">
-    <img class="wu-like-img" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" />
-    <span class="wu-like-tip">river..等20人觉得赞</span>
-    <div class="wu-like-add" :class="addCls" @click="handleClick">
-      <transition name="fade">
-        <p class="wu-like-show" v-if="show && alreadyTap">+1</p>
-        <p class="wu-like-show" v-if="show && !alreadyTap">-1</p>
-      </transition>
-    </div>
-  </div>
+<template lang="pug">
+  .wu-like
+    .wu-lick-left
+      img.wu-like-img(v-if="userInfo.avatarUrl", :src="userInfo.avatarUrl")
+      span.wu-like-tip river，小茗...20人喜欢
+    .wu-like-add(:class="addCls", @click="handleClick")
+      wu-icon(name="like-o")
+      transition(name="fade")
+        p.wu-like-show(v-if="show && alreadyTap") +1
+        p.wu-like-show(v-if="show && !alreadyTap") -1
+
 </template>
 
 <script>
+import WuIcon from '../icon'
+
 export default {
 
+  components: {
+    WuIcon
+  },
   props: ['text'],
 
   data () {
@@ -60,34 +65,32 @@ export default {
 
 <style>
   .wu-like {
+    margin-top: 10rpx;
+    padding: 0 20rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 65rpx;
     position: relative;
-    margin-top: 20rpx;
   }
   .wu-like-img {
-    width: 50rpx;
-    height: 50rpx;
+    width: 40rpx;
+    height: 40rpx;
     border-radius: 50%;
   }
   .wu-like-tip {
     margin-left: 10rpx;
     vertical-align: top;
-    height: 50rpx;
-    line-height: 50rpx;
     font-size: 14px;
     color: #999;
   }
   .wu-like-add {
-    position: absolute;
-    top: 2rpx;
-    right: 20rpx;
+    position: relative;
     width: 45rpx;
     height: 45rpx;
-    background: url("../../assets/icons/icon_like.png");
-    background-size: 100%;
   }
   .wu-like-add.active {
-    background: url("../../assets/icons/icon_like_hl.png");
-    background-size: 100%;
+    color: #3cc51f;
   }
   .wu-like-add.active .wu-like-show{
     color: #3cc51f;
