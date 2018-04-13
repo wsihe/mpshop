@@ -1,8 +1,7 @@
-<template>
-  <i class="wu-icon" :class="iconCls" v-on="$listeners">
-    <slot></slot>
-    <div v-if="info" class="wu-icon__info">{{ info }}</div>
-  </i>
+<template lang="pug">
+  i.wu-icon(:class="iconCls", v-on="$listeners")
+    slot
+    .wu-icon__info(v-if="info") {{ info }}
 </template>
 
 <script>

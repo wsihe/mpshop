@@ -1,23 +1,9 @@
-<template>
-  <div class="wu-stepper">
-    <button
-      class="wu-stepper__stepper wu-stepper__minus"
-      :class="{ 'wu-stepper__minus--disabled': isMinusDisabled }"
-      @click="onChange('minus')"
-    ></button>
-    <input
-      type="number"
-      class="wu-stepper__input"
-      :value="currentValue"
-      :disabled="disabled || disableInput"
-      @input="onInput"
-    >
-    <button
-      class="wu-stepper__stepper wu-stepper__plus"
-      :class="{ 'wu-stepper__plus--disabled': isPlusDisabled }"
-      @click="onChange('plus')"
-    ></button>
-  </div>
+<template lang="pug">
+  .wu-stepper
+    button.wu-stepper__stepper.wu-stepper__minus(:class="{ 'wu-stepper__minus--disabled': isMinusDisabled }", @click="onChange('minus')")
+    input.wu-stepper__input(type="number", :value="currentValue", :disabled="disabled || disableInput", @input="onInput")
+    button.wu-stepper__stepper.wu-stepper__plus(:class="{ 'wu-stepper__plus--disabled': isPlusDisabled }", @click="onChange('plus')")
+
 </template>
 
 <script>

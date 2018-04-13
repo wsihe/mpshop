@@ -1,58 +1,38 @@
-<template>
-  <div class="customer">
+<template lang="pug">
+  .customer
+    .userinfo
+      img.userinfo-avatar(v-if="userInfo.avatarUrl", :src="userInfo.avatarUrl", background-size="cover")
+      .userinfo-nickname
+        card(:text="userInfo.nickName")
+    .customer-card
+      .customer-card-content
+        .wu-row.user-links
+          wu-col(span="6")
+            i.wu-icon.wu-icon-pending-payment
+            | 待付款
+          wu-col(span="6")
+            i.wu-icon.wu-icon-pending-orders
+            | 待接单
+          wu-col(span="6")
+            i.wu-icon.wu-icon-pending-deliver
+            | 待发货
+          wu-col(span="6")
+            i.wu-icon.wu-icon-logistics
+            | 待发货
+    .wu-cell-group.wu-hairline--top-bottom
+      .wu-cell.wu-hairline.wu-cell--clickable
+        .wu-cell__title
+          wu-icon(name="records")
+          span.wu-cell__text 全部订单
+        .wu-cell__right-icon
+          wu-icon(name="arrow")
+      .wu-cell.wu-hairline.wu-cell--clickable
+        .wu-cell__title
+          wu-icon(name="gold-coin")
+          span.wu-cell__text 我的优惠券
+        .wu-cell__right-icon
+          wu-icon(name="arrow")
 
-    <div class="userinfo">
-      <img class="userinfo-avatar" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover" />
-      <div class="userinfo-nickname">
-        <card :text="userInfo.nickName"></card>
-      </div>
-    </div>
-
-    <div class="customer-card">
-      <div class="customer-card-content">
-        <div class="wu-row user-links">
-          <wu-col span="6">
-            <i class="wu-icon wu-icon-pending-payment"></i>
-            待付款
-          </wu-col>
-          <wu-col span="6">
-            <i class="wu-icon wu-icon-pending-orders"></i>
-            待接单
-          </wu-col>
-          <wu-col span="6">
-            <i class="wu-icon wu-icon-pending-deliver"></i>
-            待发货
-          </wu-col>
-          <wu-col span="6">
-            <i class="wu-icon wu-icon-logistics"></i>
-            待发货
-          </wu-col>
-        </div>
-      </div>
-    </div>
-
-    <div class="wu-cell-group wu-hairline--top-bottom">
-      <div class="wu-cell wu-hairline wu-cell--clickable">
-        <div class="wu-cell__title">
-          <wu-icon name="records"></wu-icon>
-          <span class="wu-cell__text">全部订单</span>
-        </div>
-        <div class="wu-cell__right-icon">
-          <wu-icon name="arrow"></wu-icon>
-        </div>
-      </div>
-      <div class="wu-cell wu-hairline wu-cell--clickable">
-        <div class="wu-cell__title">
-          <wu-icon name="gold-coin"></wu-icon>
-          <span class="wu-cell__text">我的优惠券</span>
-        </div>
-        <div class="wu-cell__right-icon">
-          <wu-icon name="arrow"></wu-icon>
-        </div>
-      </div>
-    </div>
-
-  </div>
 </template>
 
 <script>

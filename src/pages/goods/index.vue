@@ -1,29 +1,21 @@
-<template>
-  <div class="goods">
-    <swiper :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
-      <block v-for="(item, index) in imgUrls" :key="index">
-        <swiper-item>
-          <image :src="item" class="slide-image" width="375" height="240"/>
-        </swiper-item>
-      </block>
-    </swiper>
-    <div class="wu-cell-group">
-      <div class="wu-cell wu-hairline">
-        <div class="goods-title">{{ goods.title }}</div>
-        <div class="goods-price">{{ formatPrice }}</div>
-      </div>
-      <div class="wu-cell goods-express">
-        <wu-col span="10">运费：{{ goods.express }}</wu-col>
-        <wu-col span="14">剩余：{{ goods.remain }}</wu-col>
-      </div>
-    </div>
-    <div class="wu-goods-action">
-      <goods-action-btn size="mini" icon="chat" text="客服"></goods-action-btn>
-      <goods-action-btn size="mini" icon="cart" text="购物车"></goods-action-btn>
-      <goods-action-btn size="big" text="加入购物车"></goods-action-btn>
-      <goods-action-btn size="big" text="立即购买" primary></goods-action-btn>
-    </div>
-  </div>
+<template lang="pug">
+  .goods
+    swiper(:indicator-dots="indicatorDots", :autoplay="autoplay", :interval="interval", :duration="duration")
+      block(v-for="(item, index) in imgUrls", :key="index")
+        swiper-item
+          image.slide-image(:src="item", width="375", height="240")
+    .wu-cell-group
+      .wu-cell.wu-hairline
+        .goods-title {{ goods.title }}
+        .goods-price {{ formatPrice }}
+      .wu-cell.goods-express
+        wu-col(span="10") 运费：{{ goods.express }}
+        wu-col(span="14") 剩余：{{ goods.remain }}
+    .wu-goods-action
+      goods-action-btn(size="mini", icon="chat", text="客服")
+      goods-action-btn(size="mini", icon="cart", text="购物车")
+      goods-action-btn(size="big", text="加入购物车")
+      goods-action-btn(size="big", text="立即购买", primary="")
 </template>
 
 <script>

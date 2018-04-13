@@ -1,7 +1,6 @@
-<template>
-  <div :class="colCls">
-    <slot></slot>
-  </div>
+<template lang="pug">
+  div(:class="colCls")
+    slot
 </template>
 
 <script>

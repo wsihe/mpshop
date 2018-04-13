@@ -66,7 +66,7 @@ export default {
 <style>
   .wu-like {
     margin-top: 10rpx;
-    padding: 0 20rpx;
+    padding: 0 10rpx;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -79,15 +79,16 @@ export default {
     border-radius: 50%;
   }
   .wu-like-tip {
-    margin-left: 10rpx;
     vertical-align: top;
+    margin-left: 10rpx;
+    height: 40rpx;
+    line-height: 40rpx;
     font-size: 14px;
     color: #999;
   }
   .wu-like-add {
     position: relative;
-    width: 45rpx;
-    height: 45rpx;
+    font-size: 18px;
   }
   .wu-like-add.active {
     color: #3cc51f;

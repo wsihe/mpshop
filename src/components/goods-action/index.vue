@@ -1,8 +1,7 @@
-<template>
-  <div :class="goodCls" @click="onClick">
-    <wu-icon v-if="icon" :info="info" :name="icon" ></wu-icon>
-    <span>{{ text }}</span>
-  </div>
+<template lang="pug">
+  div(:class="goodCls", @click="onClick")
+    wu-icon(v-if="icon", :info="info", :name="icon")
+    span {{ text }}
 </template>
 
 <script>
