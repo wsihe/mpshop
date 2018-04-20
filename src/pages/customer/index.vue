@@ -28,6 +28,12 @@
           wu-icon(name="arrow")
       .wu-cell.wu-hairline.wu-cell--clickable
         .wu-cell__title
+          wu-icon(name="points-mall")
+          span.wu-cell__text 收货地址
+        .wu-cell__right-icon
+          wu-icon(name="arrow")
+      .wu-cell.wu-hairline.wu-cell--clickable
+        .wu-cell__title
           wu-icon(name="gold-coin")
           span.wu-cell__text 我的优惠券
         .wu-cell__right-icon

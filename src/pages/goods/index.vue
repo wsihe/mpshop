@@ -15,7 +15,9 @@
       goods-action-btn(size="mini", icon="chat", text="客服")
       goods-action-btn(size="mini", icon="cart", text="购物车")
       goods-action-btn(size="big", text="加入购物车")
-      goods-action-btn(size="big", text="立即购买", primary="")
+      goods-action-btn(size="big", text="立即购买", primary="", @click="buy")
+    .wu-popup
+    .wu-modal(v-show="visible")
 </template>
 
 <script>
@@ -30,6 +32,8 @@ export default {
 
   data () {
     return {
+      popupVisible: true,
+      visible: false,
       goods: {
         title: '农家蜂蜜（500g/1瓶）',
         price: 11800,
@@ -58,6 +62,9 @@ export default {
   },
 
   methods: {
+    buy () {
+      this.popupVisible = true
+    }
   }
 }
 </script>
