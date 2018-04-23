@@ -16,8 +16,10 @@
       goods-action-btn(size="mini", icon="cart", text="购物车")
       goods-action-btn(size="big", text="加入购物车")
       goods-action-btn(size="big", text="立即购买", primary="", @click="buy")
-    .wu-popup
-    .wu-modal(v-show="visible")
+    .wu-pop.wu-pop--bottom(:class="popCls")
+      .wu-pop__mask(@click="close")
+      .wu-pop__container
+        .goods-more 121212
 </template>
 
 <script>
@@ -32,8 +34,8 @@ export default {
 
   data () {
     return {
-      popupVisible: true,
-      visible: false,
+      currentTransition: 'popup-slide-bottom',
+      popupVisible: false,
       goods: {
         title: '农家蜂蜜（500g/1瓶）',
         price: 11800,
@@ -55,6 +57,10 @@ export default {
   computed: {
     formatPrice () {
       return '¥' + (this.goods.price / 100).toFixed(2)
+    },
+    popCls () {
+      const cls = this.popupVisible ? 'wu-pop--show' : ''
+      return cls
     }
   },
 
@@ -64,6 +70,9 @@ export default {
   methods: {
     buy () {
       this.popupVisible = true
+    },
+    close () {
+      this.popupVisible = false
     }
   }
 }
@@ -90,6 +99,12 @@ export default {
       .wu-cell__value {
         color: #999;
       }
+    }
+
+    &-more {
+      width: 750rpx;
+      height: 400rpx;
+      background-color: #fff;
     }
 
     swiper {
