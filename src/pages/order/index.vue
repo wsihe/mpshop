@@ -4,17 +4,19 @@
       wu-card(title="标题", desc="描述", num="2", price="2.00", :thumb="imageURL")
     .wu-cell-group.wu-hairline--top-bottom
       .wu-cell.wu-hairline.wu-cell--clickable
-        .wu-cell__title
-          span.wu-cell__text 配送方式
+        .wu-cell__title 配送方式
+        .wu-cell__value 免邮费
+      .wu-cell.wu-hairline.wu-cell--clickable
+        .wu-cell__title 留言
         .wu-cell__right-icon
+    .wu-cell-group
       .wu-cell.wu-hairline.wu-cell--clickable
         .wu-cell__title
-          span.wu-cell__text 留言
-        .wu-cell__right-icon
-      .wu-cell.wu-hairline.wu-cell--clickable
-        .wu-cell__title
-          span.wu-cell__text 合计
-        .wu-cell__right-icon
+          span 商品金额
+          .wu-cell__label 运费
+        .wu-cell__value
+          span 55.00
+          .wu-cell__sub + 0.00
     .wu-submit-bar
       .wu-submit-bar__bar
         .wu-submit-bar__price.wu-hairline--top
@@ -46,6 +48,10 @@ export default {
 </script>
 
 <style lang="scss">
+  page {
+    background-color: #f2f2f2;
+    height:100%;
+  }
   .order {
   }
 </style>
