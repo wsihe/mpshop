@@ -23,7 +23,10 @@
     .wu-pop.wu-pop--bottom(:class="popCls")
       .wu-pop__mask(@click="close")
       .wu-pop__container
-        .goods-more 121212
+        .goods-sku
+          wu-card(title="标题", desc="描述", num="2", price="2.00", :thumb="imageURL")
+          wu-stepper(v-model="value")
+          button.wu-btn.wu-btn--danger(@click="handleNext") 下一步
     // wu-popup(v-model="popupVisible")
       .goods-more 121212
 </template>
@@ -31,15 +34,21 @@
 <script>
 import GoodsActionBtn from 'components/goods-action'
 import WuCol from 'components/col'
+import WuCard from 'components/card'
+import WuStepper from 'components/stepper'
 
 export default {
   components: {
+    WuCard,
+    WuStepper,
     WuCol,
     GoodsActionBtn
   },
 
   data () {
     return {
+      value: 1,
+      imageURL: require('@/assets/images/fengmi.png'),
       currentTransition: 'popup-slide-bottom',
       popupVisible: false,
       goods: {
@@ -79,6 +88,10 @@ export default {
     },
     close () {
       this.popupVisible = false
+    },
+    handleNext () {
+      const url = '../order/main'
+      wx.navigateTo({ url })
     }
   }
 }
@@ -107,10 +120,18 @@ export default {
       }
     }
 
-    &-more {
+    &-sku {
+      position: relative;
       width: 750rpx;
-      height: 400rpx;
+      height: 290rpx;
       background-color: #fff;
+
+      .wu-stepper {
+        position: absolute;
+        right: 25rpx;
+        top: 120rpx;
+      }
+
     }
 
     swiper {
