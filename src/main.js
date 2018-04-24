@@ -1,21 +1,21 @@
 import Vue from 'vue'
 import App from './App'
-import initWuui from './components/index'
+// import initWuui from './components/index'
 
 Vue.config.productionTip = false
 App.mpType = 'app'
 
 const app = new Vue(App)
 app.$mount()
-initWuui()
+// initWuui()
 
 export default {
   // 这个字段走 app.json
   config: {
     // 页面前带有 ^ 符号的，会被编译成首页
     pages: [
-      'pages/goods/goods',
-      '^pages/index/index'
+      'pages/goods/main',
+      '^pages/index/main'
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -30,19 +30,19 @@ export default {
       backgroundColor: '#ffffff',
       list: [
         {
-          pagePath: 'pages/index/index',
+          pagePath: 'pages/index/main',
           iconPath: 'static/img/icon_index.png',
           selectedIconPath: 'static/img/icon_index_hl.png',
           text: '首页'
         },
         {
-          pagePath: 'pages/cart/cart',
+          pagePath: 'pages/cart/main',
           iconPath: 'static/img/icon_cart.png',
           selectedIconPath: 'static/img/icon_cart_hl.png',
           text: '购物车'
         },
         {
-          pagePath: 'pages/customer/customer',
+          pagePath: 'pages/customer/main',
           iconPath: 'static/img/icon_my.png',
           selectedIconPath: 'static/img/icon_my_hl.png',
           text: '我的'

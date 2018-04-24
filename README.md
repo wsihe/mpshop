@@ -1,6 +1,6 @@
-# mpvue
+# farm
 
-> A Vue.js project
+> A Mpvue project
 
 ## Build Setup
 

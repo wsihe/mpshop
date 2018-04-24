@@ -11,6 +11,10 @@
       .wu-cell.goods-express
         wu-col(span="10") 运费：{{ goods.express }}
         wu-col(span="14") 剩余：{{ goods.remain }}
+    .goods-detail
+      .goods-detail-title 产品详情
+      .goods-detail-content
+        | xxx
     .wu-goods-action
       goods-action-btn(size="mini", icon="chat", text="客服")
       goods-action-btn(size="mini", icon="cart", text="购物车")
@@ -20,6 +24,8 @@
       .wu-pop__mask(@click="close")
       .wu-pop__container
         .goods-more 121212
+    // wu-popup(v-model="popupVisible")
+      .goods-more 121212
 </template>
 
 <script>
