@@ -2,10 +2,10 @@
   .address-card(:class="addressCls", @click="onClick")
     .address-card__content
       template(v-if="type === 'add'")
-        wu-icon.address-card__icon(name="add2")
+        wu-icon(name="add2")
         .address-card__text 新增收货地址
       template(v-else-if="type === 'edit'")
-        wu-icon.address-card__icon(name="contact")
+        wu-icon(name="contact")
         .address-card__text
           div {{ name }}，{{ tel }}
           div 收货地址：{{ address }}
@@ -43,6 +43,13 @@ export default {
 
   methods: {
     onClick (event) {
+      let url = ''
+      if (this.type === 'add') {
+        url = '../address/addressList/main'
+      } else {
+        url = '../address/addressEdit/main'
+      }
+      wx.navigateTo({ url })
     }
   }
 }

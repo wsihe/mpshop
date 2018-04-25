@@ -3,21 +3,21 @@
     address-card
     .cart-item
       wu-card(title="标题", desc="描述", num="2", price="2.00", :thumb="imageURL")
-    .wu-cell-group.wu-hairline--top-bottom
-      .wu-cell.wu-hairline.wu-cell--clickable
-        .wu-cell__title 配送方式
-        .wu-cell__value 免邮费
-      .wu-cell.wu-hairline.wu-cell--clickable
-        .wu-cell__title 留言
-        .wu-cell__right-icon
-    .wu-cell-group
-      .wu-cell.wu-hairline.wu-cell--clickable
-        .wu-cell__title
-          span 商品金额
-          .wu-cell__label 运费
-        .wu-cell__value
-          span 55.00
-          .wu-cell__sub + 0.00
+    .wu-panel
+      .wu-cell
+        .wu-cell__bd 配送方式
+        .wu-cell__ft 免邮费
+      .wu-cell
+        .wu-cell__bd 留言
+        .wu-cell__ft
+    .wu-panel.order-express
+      .wu-cell
+        .wu-cell__bd
+          .wu-cell__text 商品金额
+          .wu-cell__desc 运费
+        .wu-cell__ft
+          .wu-cell__text 55.00
+          .wu-cell__desc + 0.00
     .wu-submit-bar
       .wu-submit-bar__bar
         .wu-submit-bar__price.wu-hairline--top
@@ -56,6 +56,9 @@ export default {
     height:100%;
   }
   .order {
+    &-express {
+      margin-top: 20rpx;
+    }
     .address-card {
       margin-bottom: 20rpx;
     }

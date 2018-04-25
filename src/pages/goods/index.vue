@@ -4,17 +4,23 @@
       block(v-for="(item, index) in imgUrls", :key="index")
         swiper-item
           image.slide-image(:src="item", width="375", height="240")
-    .wu-cell-group
-      .wu-cell.wu-hairline
+    .wu-panel
+      .wu-cell
         .goods-title {{ goods.title }}
         .goods-price {{ formatPrice }}
-      .wu-cell.goods-express
-        wu-col(span="10") 运费：{{ goods.express }}
-        wu-col(span="14") 剩余：{{ goods.remain }}
-    .goods-detail
-      .goods-detail-title 产品详情
-      .goods-detail-content
-        | xxx
+      .wu-cell
+        .goods-base
+          .goods-base-item
+            span 运费：
+            span {{ goods.express }}
+          .goods-base-item
+            span 剩余：
+            span {{ goods.remain }}
+    .wu-panel.goods-detail
+      .wu-cell
+        .goods-detail-title 产品详情
+      .wu-cell
+        .goods-detail-content xxx
     .wu-goods-action
       goods-action-btn(size="mini", icon="chat", text="客服")
       goods-action-btn(size="mini", icon="cart", text="购物车")
@@ -98,26 +104,36 @@ export default {
 </script>
 
 <style lang="scss">
+  page {
+    background-color: #f2f2f2;
+    height:100%;
+  }
+
   .goods {
-    background: #f2f2f2;
-    padding-bottom: 50px;
 
     &-title {
       font-size: 16px;
     }
     &-price {
+      font-size: 16px;
       color: #f44;
     }
-    &-express {
+
+    &-base {
+      width: 100%;
+      display: flex;
       color: #999;
       font-size: 12px;
-      padding: 5px 15px;
-    }
-    &-cell-group {
-      margin: 15px 0;
-      .wu-cell__value {
-        color: #999;
+      padding: 5px 0;
+      text-align: left;
+
+      &-item {
+        flex: 1;
       }
+    }
+
+    &-detail {
+      margin-top: 20rpx;
     }
 
     &-sku {

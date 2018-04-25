@@ -1,12 +1,21 @@
 <template lang="pug">
   .address-list
     radio-group.address-list__group(:value="value", @input="$emit('input', $event)")
-      cell-group
-        cell(v-for="(item, index) in list", :key="item.id", is-link="")
+      .wu-panel
+        .wu-cell(v-for="(item, index) in list", :key="item.id")
           radio(:name="item.id", @click="$emit('select', item, index)")
+          div
             .address-list__name {{ item.name }}，{{ item.tel }}
             .address-list__address 收货地址：{{ item.address }}
-          wu-icon.address-list__edit(name="edit", @click="$emit('edit', item, index)")
+          .address-list__edit
+            wu-icon(name="edit", @click="$emit('edit', item, index)")
+      .address-list__add(@click="handleAdd")
+        .wu-panel
+          .wu-cell.wu-cell--access
+            .wu-cell__icon
+              wu-icon(name="add")
+            .wu-cell__bd 新增收货地址
+            .wu-cell__ft
 </template>
 
 <script>
@@ -50,35 +59,42 @@ export default {
 
   methods: {
     onClick (event) {
+    },
+    handleAdd () {
+      const url = '../addressEdit/main'
+      wx.navigateTo({ url })
     }
   }
 }
 </script>
 
 <style lang="scss">
+  page {
+    background-color: #f2f2f2;
+  }
 
   .address-list {
     height: 100%;
 
-    .van-cell__value {
-      color: $text-color;
+    .wu-cell__value {
+      color: #333;
       padding-right: 34px;
       position: relative;
     }
 
-    .van-radio__label {
+    .wu-radio__label {
       margin-left: 32px;
     }
 
-    .van-radio__input {
+    .wu-radio__input {
       top: 50%;
       left: 0;
       position: absolute;
       transform: translate(0, -50%);
     }
 
-    .van-icon-checked {
-      color: $blue;
+    .wu-icon-checked {
+      color: #38f;
     }
 
     &__group {
@@ -87,7 +103,6 @@ export default {
       padding-bottom: 40px;
       box-sizing: border-box;
       -webkit-overflow-scrolling: touch;
-      background-color: $background-color;
     }
 
     &__name {
@@ -98,7 +113,7 @@ export default {
     &__address {
       font-size: 12px;
       line-height: 1.5;
-      color: $gray-darker;
+      color: #666;
     }
 
     &__edit {
@@ -106,23 +121,23 @@ export default {
       top: 50%;
       right: 15px;
       font-size: 20px;
-      color: $gray-dark;
+      color: #999;
       transform: translate(0, -50%);
     }
 
     &__add {
+      width: 100%;
       position: fixed;
       left: 0;
       bottom: 0;
       z-index: 9999;
-      padding-left: 15px;
 
-      .van-cell__text {
+      .wu-cell__text {
         font-size: 16px;
       }
 
-      .van-icon-add {
-        color: $blue;
+      .wu-icon-add {
+        color: #38f;
         font-size: 20px;
       }
     }

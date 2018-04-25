@@ -23,7 +23,7 @@
       .wu-cell.wu-cell--access
         .wu-cell__bd 全部订单
         .wu-cell__ft
-      .wu-cell.wu-cell--access
+      .wu-cell.wu-cell--access(@click="handleAddress")
         .wu-cell__bd 收货地址
         .wu-cell__ft
       .wu-cell.wu-cell--access
@@ -62,8 +62,9 @@
           }
         })
       },
-      clickHandle (msg, ev) {
-        console.log('clickHandle:', msg, ev)
+      handleAddress () {
+        const url = '../address/addressEdit/main'
+        wx.navigateTo({ url })
       }
     },
 
