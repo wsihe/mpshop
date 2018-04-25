@@ -5,11 +5,12 @@
         wu-icon.address-card__icon(name="add2")
         .address-card__text 新增收货地址
       template(v-else-if="type === 'edit'")
-        icon.address-card__icon(name="contact")
+        wu-icon.address-card__icon(name="contact")
         .address-card__text
           div {{ name }}，{{ tel }}
           div 收货地址：{{ address }}
-    icon.address-card__arrow(v-if="editable", name="arrow")
+    span.address-card__arrow
+      wu-icon(name="arrow")
 </template>
 
 <script>
@@ -70,9 +71,9 @@ export default {
       line-height: 40px;
 
       .wu-icon {
-        width: 40px;
+        width: 38px;
         color: #38f;
-        font-size: 40px;
+        font-size: 38px;
       }
     }
 
@@ -102,9 +103,10 @@ export default {
       font-size: 14px;
     }
 
-    &__arrow {
+    &__arrow .wu-icon {
+      width: 12px;
       top: 50%;
-      right: 10px;
+      right: 0;
       font-size: 12px;
       position: absolute;
       color: #999;
