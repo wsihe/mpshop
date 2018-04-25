@@ -49,9 +49,6 @@ export default {
 </script>
 
 <style lang="scss">
-  .address-card {
-    background-color: #ffffff;
-  }
 
   .address-card {
     position: relative;
