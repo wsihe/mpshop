@@ -1,5 +1,6 @@
 <template lang="pug">
   .order
+    address-card
     .cart-item
       wu-card(title="标题", desc="描述", num="2", price="2.00", :thumb="imageURL")
     .wu-cell-group.wu-hairline--top-bottom
@@ -29,9 +30,11 @@
 <script>
 import WuCard from 'components/card'
 import WuStepper from 'components/stepper'
+import AddressCard from '../address/addressCard'
 
 export default {
   components: {
+    AddressCard,
     WuCard,
     WuStepper
   },
@@ -53,5 +56,8 @@ export default {
     height:100%;
   }
   .order {
+    .address-card {
+      margin-bottom: 20rpx;
+    }
   }
 </style>

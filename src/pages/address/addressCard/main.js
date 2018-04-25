@@ -6,6 +6,6 @@ app.$mount()
 
 export default {
   config: {
-    navigationBarTitleText: '待付款的订单'
+    navigationBarTitleText: '查看启动日志'
   }
 }
