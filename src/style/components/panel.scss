@@ -1,0 +1,25 @@
+@import "./mixins/border-retina.scss";
+
+.wu-panel {
+  position: relative;
+  background: #fff;
+  overflow: hidden;
+  &::after {
+    @include hairline;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+  }
+}
+
+.wu-panel__title {
+  font-size: 14px;
+  line-height: 1;
+  color: #999;
+  padding: 20px 15px 10px 15px;
+}
+
+.wu-panel--without-border {
+  &::after {
+    border: 0 none;
+  }
+}

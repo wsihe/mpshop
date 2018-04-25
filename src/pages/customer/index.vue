@@ -19,25 +19,16 @@
           wu-col(span="6")
             i.wu-icon.wu-icon-logistics
             | 待发货
-    .wu-cell-group.wu-hairline--top-bottom
-      .wu-cell.wu-hairline.wu-cell--clickable
-        .wu-cell__title
-          wu-icon(name="records")
-          span.wu-cell__text 全部订单
-        .wu-cell__right-icon
-          wu-icon(name="arrow")
-      .wu-cell.wu-hairline.wu-cell--clickable
-        .wu-cell__title
-          wu-icon(name="points-mall")
-          span.wu-cell__text 收货地址
-        .wu-cell__right-icon
-          wu-icon(name="arrow")
-      .wu-cell.wu-hairline.wu-cell--clickable
-        .wu-cell__title
-          wu-icon(name="gold-coin")
-          span.wu-cell__text 我的优惠券
-        .wu-cell__right-icon
-          wu-icon(name="arrow")
+    .wu-panel
+      .wu-cell.wu-cell--access
+        .wu-cell__bd 全部订单
+        .wu-cell__ft
+      .wu-cell.wu-cell--access
+        .wu-cell__bd 收货地址
+        .wu-cell__ft
+      .wu-cell.wu-cell--access
+        .wu-cell__bd 我的优惠券
+        .wu-cell__ft
 
 </template>
 
@@ -84,9 +75,11 @@
 </script>
 
 <style lang="scss">
-  .customer {
-    background: #f2f2f2;
+  page {
+    background-color: #f2f2f2;
+    height:100%;
   }
+
   .userinfo {
     display: flex;
     padding: 20rpx;
