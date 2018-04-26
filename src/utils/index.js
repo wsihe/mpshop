@@ -18,3 +18,15 @@ export function formatTime (date) {
   return `${t1} ${t2}`
 }
 
+export function isObj (x) {
+  const type = typeof x
+  return x !== null && (type === 'object' || type === 'function')
+}
+
+/* eslint-disable no-useless-escape */
+
+export function mobile (value) {
+  value = value.replace(/[^-|\d]/g, '')
+  return /^((\+86)|(86))?(1)\d{10}$/.test(value) || /^0[0-9\-]{10,13}$/.test(value)
+}
+
