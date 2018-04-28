@@ -3,8 +3,12 @@
 .wu-field {
   width: 100%;
 
-  .wu-cell__title {
-    width: 90px;
+  .wu-cell__bd {
+    max-width: 90px;
+  }
+
+  .wu-cell__ft {
+    text-align: left;
   }
 
   &__error-message {
@@ -20,11 +24,11 @@
   }
 
   &--nolabel {
-    .wu-cell__title {
+    .wu-cell__bd {
       display: none;
     }
 
-    .wu-cell__value {
+    .wu-cell__ft {
       width: 100%;
       padding-left: 0;
     }

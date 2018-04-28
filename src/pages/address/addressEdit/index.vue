@@ -1,6 +1,12 @@
 <template lang="pug">
   .address-edit
-    wu-field(maxlength="15", placeholder="121", label="121", v-model="data.name",:error="errorInfo.name", @focus="onFocus('name')")
+    .wu-panel
+      wu-field(maxlength="15", placeholder="名字", label="收货人", v-model="data.name",:error="errorInfo.name", @focus="onFocus('name')")
+      wu-field(maxlength="15", placeholder="手机或者固定电话", label="联系电话", v-model="data.name",:error="errorInfo.name", @focus="onFocus('name')")
+      wu-field(maxlength="15", placeholder="如街道、楼层、门牌号等", label="详细地址", v-model="data.name",:error="errorInfo.name", @focus="onFocus('name')")
+      wu-field(maxlength="15", placeholder="邮政编码(选填)", label="邮政编码", v-model="data.name",:error="errorInfo.name", @focus="onFocus('name')")
+    button.wu-btn.wu-btn--primary 确定
+    button.wu-btn 删除
 </template>
 
 <script>

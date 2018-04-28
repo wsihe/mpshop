@@ -3,7 +3,7 @@
     .wu-cell__bd {{label}}
     .wu-cell__ft
       textarea.wu-field__control(v-if="type === 'textarea'", v-bind="$attrs", v-on="listeners", ref="textarea", :value="value")
-      input.wu-field__control(v-else="", v-bind="$attrs", v-on="listeners", :type="type", :value="value")
+      input.wu-field__control(v-else="", v-bind="$attrs", v-on="listeners", :type="type", :placeholder="placeholder", :value="value")
     .wu-field__error-message(v-if="errorMessage") {{errorMessage}}
 </template>
 
@@ -22,6 +22,7 @@ export default {
     },
     value: {},
     label: String,
+    placeholder: String,
     error: Boolean,
     border: Boolean,
     required: Boolean,
