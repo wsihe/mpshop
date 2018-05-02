@@ -5,8 +5,9 @@
       wu-field(maxlength="15", placeholder="手机或者固定电话", label="联系电话", v-model="data.name",:error="errorInfo.name", @focus="onFocus('name')")
       wu-field(maxlength="15", placeholder="如街道、楼层、门牌号等", label="详细地址", v-model="data.name",:error="errorInfo.name", @focus="onFocus('name')")
       wu-field(maxlength="15", placeholder="邮政编码(选填)", label="邮政编码", v-model="data.name",:error="errorInfo.name", @focus="onFocus('name')")
-    button.wu-btn.wu-btn--primary 确定
-    button.wu-btn 删除
+    .wu-button-group
+      button.wu-btn.wu-btn--primary 确定
+      button.wu-btn 删除
 </template>
 
 <script>
@@ -91,8 +92,9 @@ export default {
 
 <style lang="scss">
 
-  .address-card {
-
+  .wu-button-group {
+    margin-top: 20rpx;
+    padding: 0 20rpx;
   }
 
 </style>

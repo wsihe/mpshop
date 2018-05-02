@@ -3,19 +3,21 @@
     radio-group.address-list__group(:value="value", @input="$emit('input', $event)")
       .wu-panel
         .wu-cell(v-for="(item, index) in list", :key="item.id")
-          radio(:name="item.id", @click="$emit('select', item, index)")
-          div
-            .address-list__name {{ item.name }}，{{ item.tel }}
-            .address-list__address 收货地址：{{ item.address }}
+          .wu-cell__value
+            label.radio
+              radio.wu-radio__input(:name="item.id", @click="$emit('select', item, index)")
+              div.wu-radio__label
+                .address-list__name {{ item.name }}，{{ item.tel }}
+                .address-list__address 收货地址：{{ item.address }}
           .address-list__edit
             wu-icon(name="edit", @click="$emit('edit', item, index)")
-      .address-list__add(@click="handleAdd")
-        .wu-panel
-          .wu-cell.wu-cell--access
-            .wu-cell__icon
-              wu-icon(name="add")
-            .wu-cell__bd 新增收货地址
-            .wu-cell__ft
+    .address-list__add
+      .wu-panel(@click="handleAdd")
+        .wu-cell.wu-cell--access
+          .wu-cell__icon
+            wu-icon(name="add")
+          .wu-cell__bd 新增收货地址
+          .wu-cell__ft
 </template>
 
 <script>
@@ -126,11 +128,13 @@ export default {
     }
 
     &__add {
-      width: 100%;
-      position: fixed;
-      left: 0;
-      bottom: 0;
-      z-index: 9999;
+      left:0;
+      right:0;
+      bottom:0;
+      width:100%;
+      z-index:100;
+      position:fixed;
+      user-select:none;
 
       .wu-cell__text {
         font-size: 16px;
