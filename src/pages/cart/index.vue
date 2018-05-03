@@ -18,7 +18,6 @@
 </template>
 
 <script>
-import { formatTime } from '@/utils/index'
 import wuIcon from 'components/icon'
 import WuCard from 'components/card'
 import WuStepper from 'components/stepper'

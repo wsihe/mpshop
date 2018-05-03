@@ -63,7 +63,7 @@
         })
       },
       handleAddress () {
-        const url = '../address/addressEdit/main'
+        const url = '../address/addressList/main'
         wx.navigateTo({ url })
       }
     },

@@ -50,7 +50,7 @@ export default {
     }
   },
 
-  created () {
+  mounted () {
   },
 
   computed: {

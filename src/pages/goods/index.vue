@@ -23,7 +23,7 @@
         .goods-detail-content xxx
     .wu-goods-action
       goods-action-btn(size="mini", icon="chat", text="客服")
-      goods-action-btn(size="mini", icon="cart", text="购物车")
+      goods-action-btn(size="mini", icon="cart", text="购物车", @click="switchTab")
       goods-action-btn(size="big", text="加入购物车")
       goods-action-btn(size="big", text="立即购买", primary="", @click="buy")
     .wu-pop.wu-pop--bottom(:class="popCls")
@@ -85,7 +85,11 @@ export default {
     }
   },
 
-  created () {
+  mounted () {
+    wx.showNavigationBarLoading()
+    setTimeout(() => {
+      wx.hideNavigationBarLoading()
+    }, 1000)
   },
 
   methods: {
@@ -98,6 +102,11 @@ export default {
     handleNext () {
       const url = '../order/main'
       wx.navigateTo({ url })
+    },
+    switchTab () {
+      wx.switchTab({
+        url: '/pages/cart/main'
+      })
     }
   }
 }
