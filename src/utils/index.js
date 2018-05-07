@@ -30,3 +30,16 @@ export function mobile (value) {
   return /^((\+86)|(86))?(1)\d{10}$/.test(value) || /^0[0-9\-]{10,13}$/.test(value)
 }
 
+/**
+ * url 格式化
+ * @param url [url模板]
+ * @param map [参数]
+ */
+export function formatUrl (url, map) {
+  map = map || {}
+  return url.replace(/{(\w+)}/g, function (match, key) {
+    let value = map[key]
+    return typeof value !== 'undefined' ? encodeURIComponent(value + '') : match
+  })
+}
+

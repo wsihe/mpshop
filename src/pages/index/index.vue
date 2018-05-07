@@ -1,9 +1,9 @@
 <template lang="pug">
   .container
     swiper(:indicator-dots="indicatorDots", :autoplay="autoplay", :interval="interval", :duration="duration")
-      block(v-for="(item, index) in imgUrls", :key="index")
+      block(v-for="(item, index) in banner", :key="index")
         swiper-item
-          image.slide-image(:src="item", width="355", height="150")
+          image.slide-image(:src="item.image_url", width="355", height="150")
     ul.products
       li.products-item
         div(@click="bindViewTap")
@@ -13,7 +13,6 @@
             span.product-desc 自家产的土蜂蜜，没任何加工添加
             .product-status
               wu-icon(name="hot-sale")
-        like
       li.products-item
         div(@click="bindViewTap")
           img.products-item-img(mode="scaleToFill", :src="itemUrl")
@@ -22,23 +21,21 @@
             span.product-desc 新鲜上市的荔枝，接受预定
             .product-status
               wu-icon(name="new-arrival")
-        like
 </template>
 
 <script>
-import like from 'components/like'
-import WuIcon from 'components/icon/index'
+import indexApi from '@/api/home'
+import WuIcon from 'components/icon'
 
 export default {
+  components: {
+    WuIcon
+  },
   data () {
     return {
+      banner: [],
       srcUrl: require('@/assets/images/bg.png'),
       itemUrl: require('@/assets/images/fengmi.png'),
-      imgUrls: [
-        require('@/assets/images/bg.png'),
-        require('@/assets/images/bg.png'),
-        require('@/assets/images/bg.png')
-      ],
       indicatorDots: true,
       autoplay: true,
       interval: 5000,
@@ -46,15 +43,18 @@ export default {
     }
   },
 
-  components: {
-    WuIcon,
-    like
-  },
-
-  created () {
+  mounted () {
+    this.getIndexData()
   },
 
   methods: {
+    async getIndexData () {
+      let res = await indexApi.getIndex()
+      if (res.errno === 0) {
+        this.banner = res.data.banner
+      }
+    },
+
     bindViewTap () {
       const url = '../goods/main'
       wx.navigateTo({ url })
@@ -80,7 +80,6 @@ export default {
   .products-right {
     position: relative;
     padding: 10rpx 10rpx 20rpx;
-    border-bottom: 1px solid #ededed;
   }
   .product-title {
     margin-left: 10rpx;
@@ -89,6 +88,8 @@ export default {
     display: block;
     margin-top: 10rpx;
     margin-left: 10rpx;
+    padding-top: 15rpx;
+    border-top: 1px solid #ededed;
     font-size: 14px;
     color: #666;
   }
