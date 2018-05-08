@@ -1,33 +1,34 @@
 <template lang="pug">
   .goods
-    swiper(:indicator-dots="indicatorDots", :autoplay="autoplay", :interval="interval", :duration="duration")
-      block(v-for="(item, index) in imgUrls", :key="index")
-        swiper-item
-          image.slide-image(:src="item", width="375", height="240")
+    swiper.goods-imgs(:indicator-dots="true", :autoplay="true" interval="3000" duration="1000")
+      swiper-item(v-for="(item, index) in gallery", :key="item.id")
+        image.slide-image(:src="item.img_url" background-size="cover")
     .wu-panel
       .wu-cell
-        .goods-title {{ goods.title }}
-        .goods-price {{ formatPrice }}
+        .goods-title {{ goods.name }}
+        .goods-price ￥{{goods.retail_price}}
+      .wu-cell
+        .goods-desc {{ goods.goods_brief }}
       .wu-cell
         .goods-base
           .goods-base-item
-            span 运费：
-            span {{ goods.express }}
-          .goods-base-item
             span 剩余：
             span {{ goods.remain }}
+          .goods-base-item
+            span 运费：
+            span 免运费
     .wu-panel.goods-detail
       .wu-cell
         .goods-detail-title 产品详情
       .wu-cell
-        .goods-detail-content xxx
+        .goods-detail-content(v-html="goodsDesc")
     .wu-goods-action
       goods-action-btn(size="mini", icon="chat", text="客服")
       goods-action-btn(size="mini", icon="cart", text="购物车", @click="switchTab")
       goods-action-btn(size="big", text="加入购物车")
       goods-action-btn(size="big", text="立即购买", primary="", @click="buy")
     .wu-pop.wu-pop--bottom(:class="popCls")
-      .wu-pop__mask(@click="close")
+      .wu-pop__mask(@click="buy")
       .wu-pop__container
         .goods-sku
           wu-card(title="标题", desc="描述", num="2", price="2.00", :thumb="imageURL")
@@ -38,6 +39,7 @@
 </template>
 
 <script>
+import api from '@/api'
 import GoodsActionBtn from 'components/goods-action'
 import WuCol from 'components/col'
 import WuCard from 'components/card'
@@ -53,32 +55,18 @@ export default {
 
   data () {
     return {
+      id: '',
+      gallery: [],
+      goods: {},
+      goodsDesc: '',
       value: 1,
       imageURL: require('@/assets/images/fengmi.png'),
       currentTransition: 'popup-slide-bottom',
-      popupVisible: false,
-      goods: {
-        title: '农家蜂蜜（500g/1瓶）',
-        price: 11800,
-        express: '免运费',
-        remain: 19
-      },
-      imgUrls: [
-        require('@/assets/images/bg.png'),
-        require('@/assets/images/bg.png'),
-        require('@/assets/images/bg.png')
-      ],
-      indicatorDots: true,
-      autoplay: false,
-      interval: 5000,
-      duration: 1000
+      popupVisible: false
     }
   },
 
   computed: {
-    formatPrice () {
-      return '¥' + (this.goods.price / 100).toFixed(2)
-    },
     popCls () {
       const cls = this.popupVisible ? 'wu-pop--show' : ''
       return cls
@@ -87,17 +75,24 @@ export default {
 
   mounted () {
     wx.showNavigationBarLoading()
-    setTimeout(() => {
-      wx.hideNavigationBarLoading()
-    }, 1000)
+    this.getGoodsInfo()
   },
 
   methods: {
-    buy () {
-      this.popupVisible = true
+    async getGoodsInfo () {
+      this.id = this.$root.$mp.query.id
+      let res = await api.goodsDetail(this.id)
+      if (res.errno === 0) {
+        this.goods = res.data.info
+        this.gallery = res.data.gallery
+        let goodsDesc = res.data.info.goods_desc.replace(/img/gi, 'IMG class="img_cls"')
+        this.goodsDesc = goodsDesc
+      }
+      wx.hideNavigationBarLoading()
     },
-    close () {
-      this.popupVisible = false
+
+    buy () {
+      this.popupVisible = !this.popupVisible
     },
     handleNext () {
       const url = '../order/main'
@@ -120,6 +115,16 @@ export default {
 
   .goods {
 
+    &-imgs{
+      width: 750rpx;
+      height: 750rpx;
+
+      image {
+        width: 750rpx;
+        height: 750rpx;
+      }
+    }
+
     &-title {
       font-size: 16px;
     }
@@ -141,8 +146,15 @@ export default {
       }
     }
 
-    &-detail {
-      margin-top: 20rpx;
+    &-detail-content {
+      width: 750rpx;
+      height: auto;
+      overflow: hidden;
+
+      .img_cls {
+        width: 750rpx;
+        background-size: cover;
+      }
     }
 
     &-sku {
@@ -157,17 +169,6 @@ export default {
         top: 120rpx;
       }
 
-    }
-
-    swiper {
-      height: 240px;
-    }
-
-    .slide-image {
-      position:relative;
-      width: 100%;
-      align-items:center;
-      justify-content:center;
     }
 
   }

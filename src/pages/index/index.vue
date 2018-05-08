@@ -1,30 +1,30 @@
 <template lang="pug">
   .container
-    swiper(:indicator-dots="indicatorDots", :autoplay="autoplay", :interval="interval", :duration="duration")
-      block(v-for="(item, index) in banner", :key="index")
-        swiper-item
-          image.slide-image(:src="item.image_url", width="355", height="150")
+    swiper.banner(:indicator-dots="true", :autoplay="true" interval="3000" duration="1000")
+      swiper-item(v-for="(item, index) in banner", :key="index")
+        navigator(:url="item.link")
+          image(:src="item.image_url" background-size="cover")
     ul.products
-      li.products-item
-        div(@click="bindViewTap")
-          img.products-item-img(mode="scaleToFill", :src="itemUrl")
+      li.products-item(v-for="(item, index) in hotGoodsList", :key="index")
+        div(@click="handleViewTo(item.id)")
+          img.products-item-img(mode="scaleToFill", :src="item.list_pic_url")
           .products-right
-            text.product-title 纯正蜂蜜
-            span.product-desc 自家产的土蜂蜜，没任何加工添加
+            text.product-title {{item.name}}
+            span.product-desc {{item.goods_brief}}
             .product-status
               wu-icon(name="hot-sale")
-      li.products-item
-        div(@click="bindViewTap")
-          img.products-item-img(mode="scaleToFill", :src="itemUrl")
+    ul.products
+      li.products-item(v-for="(item, index) in newGoodsList", :key="index")
+        div(@click="handleViewTo(item.id)")
+          img.products-item-img(mode="scaleToFill", :src="item.list_pic_url")
           .products-right
-            text.product-title 新鲜荔枝
-            span.product-desc 新鲜上市的荔枝，接受预定
+            text.product-title {{item.name}}
             .product-status
               wu-icon(name="new-arrival")
 </template>
 
 <script>
-import indexApi from '@/api/home'
+import api from '@/api'
 import WuIcon from 'components/icon'
 
 export default {
@@ -34,12 +34,8 @@ export default {
   data () {
     return {
       banner: [],
-      srcUrl: require('@/assets/images/bg.png'),
-      itemUrl: require('@/assets/images/fengmi.png'),
-      indicatorDots: true,
-      autoplay: true,
-      interval: 5000,
-      duration: 1000
+      newGoodsList: [],
+      hotGoodsList: []
     }
   },
 
@@ -49,14 +45,15 @@ export default {
 
   methods: {
     async getIndexData () {
-      let res = await indexApi.getIndex()
+      let res = await api.getIndex()
       if (res.errno === 0) {
         this.banner = res.data.banner
+        this.newGoodsList = res.data.newGoodsList
+        this.hotGoodsList = res.data.hotGoodsList
       }
     },
-
-    bindViewTap () {
-      const url = '../goods/main'
+    handleViewTo (id) {
+      let url = `/pages/goods/main?id=${id}`
       wx.navigateTo({ url })
     }
   }
@@ -65,6 +62,16 @@ export default {
 </script>
 
 <style lang="scss">
+  .banner {
+    width: 750rpx;
+    height: 417rpx;
+
+    image {
+      width: 100%;
+      height: 417rpx;
+    }
+  }
+
   .products-item {
     border-radius: 4px;
     margin: 20rpx;

@@ -2,7 +2,7 @@
   .cart
     ul
       checkbox-group(@change="checkboxChange")
-        li.cart-item(v-for="(item, index) in goods")
+        li.cart-item(v-for="(item, index) in goods", :key="index")
           label.checkbox
             checkbox.wu-checkbox__icon(:value="item.id", :checked="item.checked")
             wu-card(:title="item.title", :desc="item.desc", :num="item.num", :price="item.price", :thumb="item.thumb")
