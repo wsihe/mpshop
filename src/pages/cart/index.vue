@@ -2,22 +2,22 @@
   .cart
     ul
       checkbox-group(@change="checkboxChange")
-        li.cart-item(v-for="(item, index) in goods", :key="index")
+        li.cart-item(v-for="(item, index) in cartGoods", :key="index")
           label.checkbox
-            checkbox.wu-checkbox__icon(:value="item.id", :checked="item.checked")
-            wu-card(:title="item.title", :desc="item.desc", :num="item.num", :price="item.price", :thumb="item.thumb")
-          wu-stepper(v-model="item.num")
+            checkbox.wu-checkbox__icon(:value="item.id", :checked="item.checked === 1")
+            wu-card(:title="item.goods_name", :desc="item.desc", :num="item.number", :price="item.retail_price", :thumb="item.list_pic_url")
+          wu-stepper(v-model="item.number")
     .wu-submit-bar
       .wu-submit-bar__bar
         .wu-submit-bar__price.wu-hairline--top
           span.wu-submit-bar__price-text 合计：
-          span.wu-submit-bar__price-interger ¥35.
-          span.wu-submit-bar__price-decimal 70
+          span.wu-submit-bar__price-interger ¥{{cartTotal.checkedGoodsAmount}}
         button.wu-button.wu-submit-bar__btn 结算
 
 </template>
 
 <script>
+import api from '@/api'
 import wuIcon from 'components/icon'
 import WuCard from 'components/card'
 import WuStepper from 'components/stepper'
@@ -31,40 +31,27 @@ export default {
 
   data () {
     return {
-      goods: [{
-        id: '1',
-        title: '进口香蕉',
-        desc: '约250g，2根',
-        price: 200,
-        num: 1,
-        checked: true,
-        thumb: require('@/assets/images/pingguo.jpeg')
-      }, {
-        id: '2',
-        title: '陕西蜜梨',
-        desc: '约600g',
-        price: 690,
-        num: 1,
-        checked: true,
-        thumb: require('@/assets/images/pingguo.jpeg')
-      }, {
-        id: '3',
-        title: '美国伽力果',
-        desc: '约680g/3个',
-        price: 2680,
-        num: 1,
-        checked: true,
-        thumb: require('@/assets/images/pingguo.jpeg')
-      }]
+      cartGoods: [],
+      cartTotal: {}
     }
   },
 
-  created () {
+  mounted () {
+    this.getCartList()
   },
 
   methods: {
     checkboxChange (e) {
       console.log('checkbox发生change事件，携带value值为：', e.target.value)
+    },
+    async getCartList () {
+      let res = await api.cartList()
+      if (res.errno === 0) {
+        this.cartGoods = res.data.cartList
+        this.cartTotal = res.data.cartTotal
+      }
+
+      // this.checkedAllStatus = this.isCheckedAll()
     }
   }
 }

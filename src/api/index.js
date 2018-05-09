@@ -21,5 +21,27 @@ export default {
       id
     }
     return request().get(urls.goodsDetail, params)
+  },
+
+  /**
+   * 添加商品到购物车
+   * @param id [产品ID]
+   * @return {Promise}
+   */
+  cartAdd (goodsId, number, productId) {
+    const params = {
+      goodsId,
+      number,
+      productId
+    }
+    return request().post(urls.cartAdd, params)
+  },
+
+  /**
+   * 获取购物车的数据
+   * @return {Promise}
+   */
+  cartList () {
+    return request().get(urls.cartList)
   }
 }

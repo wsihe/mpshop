@@ -31,7 +31,7 @@ export default function () {
      * @param headers [请求头部] 非必传
      */
     post (url, params, headers) {
-      return request.post(url, params, 'POST')
+      return request(url, params, 'POST')
     },
 
     /**
@@ -41,7 +41,7 @@ export default function () {
      * @param headers [请求头部] 非必传
      */
     put  (url, params, headers) {
-      return request.put(url, params, 'put')
+      return request(url, params, 'put')
     },
 
     /**
@@ -51,7 +51,7 @@ export default function () {
      * @param headers [请求头部] 非必传
      */
     delete (url, params, headers) {
-      return request.delete(url, 'delete')
+      return request(url, 'delete')
     }
   }
 }
