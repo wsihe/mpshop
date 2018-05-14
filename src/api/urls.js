@@ -1,6 +1,9 @@
 const rootUrl = 'http://127.0.0.1:8360/api/'
 
 export default {
+  // 微信登录
+  authLoginByWeixin: `${rootUrl}auth/loginByWeixin`,
+
   // 首页
   indexUrl: `${rootUrl}index/index`,
 
