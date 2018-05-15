@@ -23,9 +23,15 @@ export default {
 
   name: 'addressCard',
 
+  props: {
+    type: {
+      type: String,
+      default: 'add'
+    }
+  },
+
   data () {
     return {
-      type: 'add',
       tel: '13888888888',
       name: '小茗',
       address: '广州市天河区'

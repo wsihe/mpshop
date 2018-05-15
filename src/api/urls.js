@@ -23,5 +23,16 @@ export default {
   // 获取购物车商品件数
   cartGoodsCount: `${rootUrl}cart/goodscount`,
   // 下单前信息确认
-  cartCheckout: `${rootUrl}cart/checkout`
+  cartCheckout: `${rootUrl}cart/checkout`,
+
+  // 收货地址列表
+  addressList: `${rootUrl}address/list`,
+  // 收货地址详情
+  addressDetail: `${rootUrl}address/detail`,
+  // 保存收货地址
+  addressSave: `${rootUrl}address/save`,
+  // 删除收货地址
+  addressDelete: `${rootUrl}address/delete`,
+  // 获取区域列表
+  regionList: `${rootUrl}region/list`
 }

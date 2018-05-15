@@ -42,7 +42,8 @@ const request = (url, data = {}, method = 'GET') => new Promise((resolve, reject
     data,
     method,
     header: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'X-Nideshop-Token': wx.getStorageSync('token')
     },
     success: res => {
       if (res.statusCode === 200) {

@@ -1,8 +1,8 @@
 <template lang="pug">
   .order
-    address-card
-    .cart-item
-      wu-card(title="标题", desc="描述", num="2", price="2.00", :thumb="imageURL")
+    address-card(:type="addressType")
+    .cart-item(v-for="(good, index) in checkedGoodsList", :key="good.id")
+      wu-card(:title="good.goods_name", :num="good.number", :price="good.retail_price", :thumb="good.list_pic_url")
     .wu-panel
       .wu-cell
         .wu-cell__bd 配送方式
@@ -16,18 +16,18 @@
           .wu-cell__text 商品金额
           .wu-cell__desc 运费
         .wu-cell__ft
-          .wu-cell__text 55.00
+          .wu-cell__text ¥{{actualPrice}}
           .wu-cell__desc + 0.00
     .wu-submit-bar
       .wu-submit-bar__bar
         .wu-submit-bar__price.wu-hairline--top
           span.wu-submit-bar__price-text 合计：
-          span.wu-submit-bar__price-interger ¥35.
-          span.wu-submit-bar__price-decimal 70
-        button.wu-button.wu-submit-bar__btn 结算
+          span.wu-submit-bar__price-interger ¥{{actualPrice}}
+        button.wu-button.wu-submit-bar__btn(@click="") 结算
 </template>
 
 <script>
+import api from '@/api'
 import WuCard from 'components/card'
 import WuStepper from 'components/stepper'
 import AddressCard from '../address/addressCard'
@@ -41,11 +41,36 @@ export default {
 
   data () {
     return {
-      imageURL: require('@/assets/images/fengmi.png')
+      addressType: 'add',
+      addressId: '',
+      couponId: '',
+      checkedGoodsList: [],
+      checkedAddress: {},
+      freightPrice: 0.00,    // 快递费
+      actualPrice: 0.00     // 实际需要支付的总价
     }
   },
 
-  created () {
+  mounted () {
+    wx.showLoading({
+      title: '加载中...'
+    })
+    this.getCheckoutInfo()
+  },
+
+  methods: {
+    async getCheckoutInfo () {
+      let res = await api.cartCheckout(this.addressId, this.couponId)
+      if (res.errno === 0) {
+        this.checkedGoodsList = res.data.checkedGoodsList
+        this.checkedAddress = res.data.checkedAddress
+        this.actualPrice = res.data.actualPrice
+        this.freightPrice = res.data.freightPrice
+
+        this.addressType = this.checkedAddress.id > 0 ? 'edit' : 'add'
+      }
+      wx.hideLoading()
+    }
   }
 }
 </script>

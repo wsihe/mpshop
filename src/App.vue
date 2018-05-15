@@ -21,6 +21,7 @@ export default {
     justify-content: space-between;
     box-sizing: border-box;
     background: #f2f2f2;
+    font-family: PingFangSC-Light,helvetica,'Heiti SC';
   }
   /* this rule will be remove */
   * {
@@ -29,4 +30,17 @@ export default {
     -webkit-transition: width 2s;
     -o-transition: width 2s;
   }
+
+  view,image,text,navigator{
+    box-sizing: border-box;
+    padding:0;
+    margin:0;
+  }
+
+  view,text{
+    font-family: PingFangSC-Light,helvetica,'Heiti SC';
+    font-size: 29rpx;
+    color: #333;
+  }
+
 </style>

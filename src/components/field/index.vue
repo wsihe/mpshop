@@ -4,7 +4,6 @@
     .wu-cell__ft
       textarea.wu-field__control(v-if="type === 'textarea'", v-bind="$attrs", v-on="listeners", ref="textarea", :value="value")
       input.wu-field__control(v-else="", v-bind="$attrs", v-on="listeners", :type="type", :placeholder="placeholder", :value="value")
-    .wu-field__error-message(v-if="errorMessage") {{errorMessage}}
 </template>
 
 <script>
@@ -26,8 +25,7 @@ export default {
     error: Boolean,
     border: Boolean,
     required: Boolean,
-    autosize: [Boolean, Object],
-    errorMessage: String
+    autosize: [Boolean, Object]
   },
 
   watch: {

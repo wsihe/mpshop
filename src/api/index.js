@@ -43,5 +43,36 @@ export default {
    */
   cartList () {
     return request().get(urls.cartList)
+  },
+
+  /**
+   * 添加商品到购物车
+   * @param addressId [地址ID]
+   * @return {Promise}
+   */
+  cartCheckout (addressId, couponId) {
+    const params = {
+      addressId,
+      couponId
+    }
+    return request().get(urls.cartCheckout, params)
+  },
+
+  /**
+   * 保存收货地址
+   * @return {Promise}
+   */
+  addressSave (params) {
+    return request().post(urls.addressSave, params)
+  },
+  /**
+   * 获取区域列表
+   * @return {Promise}
+   */
+  regionList (parentId) {
+    const params = {
+      parentId
+    }
+    return request().get(urls.regionList, params)
   }
 }
