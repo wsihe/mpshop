@@ -48,6 +48,7 @@ export default {
   /**
    * 添加商品到购物车
    * @param addressId [地址ID]
+   * @param couponId [优惠券ID]
    * @return {Promise}
    */
   cartCheckout (addressId, couponId) {
@@ -56,6 +57,31 @@ export default {
       couponId
     }
     return request().get(urls.cartCheckout, params)
+  },
+
+  /**
+   * 添加商品到购物车
+   * @param addressId [地址ID]
+   * @param couponId [优惠券ID]
+   * @return {Promise}
+   */
+  orderSubmit (addressId, couponId) {
+    const params = {
+      addressId,
+      couponId
+    }
+    return request().post(urls.orderSubmit, params)
+  },
+  /**
+   * 获取微信统一下单prepay_id
+   * @param orderId [订单ID]
+   * @return {Promise}
+   */
+  payPrepayId (orderId) {
+    const params = {
+      orderId
+    }
+    return request().get(urls.payPrepayId, params)
   },
 
   /**

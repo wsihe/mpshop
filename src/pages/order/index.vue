@@ -23,11 +23,13 @@
         .wu-submit-bar__price.wu-hairline--top
           span.wu-submit-bar__price-text 合计：
           span.wu-submit-bar__price-interger ¥{{actualPrice}}
-        button.wu-button.wu-submit-bar__btn(@click="") 去付款
+        button.wu-button.wu-submit-bar__btn(@click="payOrder") 去付款
 </template>
 
 <script>
 import api from '@/api'
+import { showErrorToast } from '@/utils'
+import payOrder from '@/api/pay'
 import WuCard from 'components/card'
 import WuStepper from 'components/stepper'
 import AddressCard from '../address/addressCard'
@@ -74,6 +76,24 @@ export default {
         this.addressType = this.checkedAddress.id > 0 ? 'edit' : 'add'
       }
       wx.hideLoading()
+    },
+    async payOrder () {
+      try {
+        let res = await api.orderSubmit(this.addressId, this.couponId)
+        // console.log(JSON.stringify(res))
+        if (res.errno === 0) {
+          const orderId = res.data.orderInfo.id
+          let res2 = await payOrder(parseInt(orderId))
+          console.log(res2)
+          wx.redirectTo({
+            url: `/pages/pay/main?status=1&orderId=${orderId}`
+          })
+        } else {
+          showErrorToast('下单失败')
+        }
+      } catch (e) {
+        // do something
+      }
     }
   }
 }

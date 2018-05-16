@@ -34,5 +34,19 @@ export default {
   // 删除收货地址
   addressDelete: `${rootUrl}address/delete`,
   // 获取区域列表
-  regionList: `${rootUrl}region/list`
+  regionList: `${rootUrl}region/list`,
+
+  // 提交订单
+  orderSubmit: `${rootUrl}order/submit`,
+  // 获取微信统一下单prepay_id
+  payPrepayId: `${rootUrl}pay/prepay`,
+
+  // 订单列表
+  orderList: `${rootUrl}order/list`,
+  // 订单详情
+  orderDetail: `${rootUrl}order/detail`,
+  // 取消订单
+  orderCancel: `${rootUrl}order/cancel`,
+  // 物流详情
+  orderExpress: `${rootUrl}order/express`
 }
