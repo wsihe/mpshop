@@ -2,15 +2,15 @@
   .address-list
     radio-group.address-list__group(:value="value", @input="$emit('input', $event)")
       .wu-panel
-        .wu-cell(v-for="(item, index) in list", :key="item.id")
+        .wu-cell(v-for="(item, index) in addressList", :key="item.id", @click="selectAddress(item.id)")
           .wu-cell__value
             label.radio
-              radio.wu-radio__input(:name="item.id", @click="$emit('select', item, index)")
+              radio.wu-radio__input(:name="item.id", @click="selectAddress(item.id)")
               div.wu-radio__label
-                .address-list__name {{ item.name }}，{{ item.tel }}
-                .address-list__address 收货地址：{{ item.address }}
-          .address-list__edit
-            wu-icon(name="edit", @click="$emit('edit', item, index)")
+                .address-list__name {{ item.name }}，{{ item.mobile }}
+                .address-list__address 收货地址：{{item.full_region + item.address}}
+          .address-list__edit(@click="addressUpdate(item.id)")
+            wu-icon(name="edit")
     .address-list__add
       .wu-panel(@click="handleAdd")
         .wu-cell.wu-cell--access
@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import api from '@/api'
 import WuIcon from 'components/icon'
 
 export default {
@@ -33,24 +34,12 @@ export default {
   data () {
     return {
       chosenAddressId: '1',
-      list: [
-        {
-          id: '1',
-          name: '张三',
-          tel: '13000000000',
-          address: '浙江省杭州市西湖区文三路 138 号东方通信大厦 7 楼 501 室'
-        },
-        {
-          id: '2',
-          name: '李四',
-          tel: '1310000000',
-          address: '浙江省杭州市拱墅区莫干山路 50 号'
-        }
-      ]
+      addressList: []
     }
   },
 
   mounted () {
+    this.getAddressList()
   },
 
   computed: {
@@ -60,7 +49,25 @@ export default {
   },
 
   methods: {
-    onClick (event) {
+    async getAddressList () {
+      let res = await api.addressList()
+      if (res.errno === 0) {
+        this.addressList = res.data
+      }
+    },
+    addressUpdate (addressId) {
+      wx.navigateTo({
+        url: `../addressEdit/main?id=${addressId}`
+      })
+    },
+    selectAddress (addressId) {
+      try {
+        wx.setStorageSync('addressId', addressId)
+      } catch (e) {}
+      // 选择该收货地址
+      wx.redirectTo({
+        url: '/pages/order/main'
+      })
     },
     handleAdd () {
       const url = '../addressEdit/main'

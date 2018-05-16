@@ -59,6 +59,33 @@ export default {
   },
 
   /**
+   * 收货地址列表
+   * @return {Promise}
+   */
+  addressList () {
+    return request().get(urls.addressList)
+  },
+  /**
+   * 收货地址详情
+   * @return {Promise}
+   */
+  addressDetail (id) {
+    const params = {
+      id
+    }
+    return request().get(urls.addressDetail, params)
+  },
+  /**
+   * 删除收货地址
+   * @return {Promise}
+   */
+  addressDelete (id) {
+    const params = {
+      id
+    }
+    return request().post(urls.addressDelete, params)
+  },
+  /**
    * 保存收货地址
    * @return {Promise}
    */

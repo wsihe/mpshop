@@ -12,18 +12,17 @@
 
     .wu-button-group
       button.wu-btn.wu-btn--primary(@click="saveAddress") 确定
-      button.wu-btn(v-if="showDelete", @click="cancelAddress") 删除
 
     .wu-pop.wu-pop--bottom(:class="popCls")
       .wu-pop__mask(@click="openSelectRegion")
       .wu-pop__container.region-select
         .hd
           .region-selected
-            .item(@click="selectRegionType(index)" v-for="(item, index) in selectRegionList", :key="item.id") {{item.name}}
-          .done(@click="doneSelectRegion") 确定
+            .item(:class="{disabled: item.id == 0, selected: (regionType -1) === index}", @click="selectRegionType(index)" v-for="(item, index) in selectRegionList", :key="item.id") {{item.name}}
+          .done(:class="{disabled: !selectRegionDone}", @click="doneSelectRegion") 确定
         .bd
           .region-list
-            .item(@click="selectRegion(index)", v-for="(item, index) in regionList", :key="item.id") {{item.name}}
+            .item(:class="{selected: item.selected}", @click="selectRegion(index)", v-for="(item, index) in regionList", :key="item.id") {{item.name}}
 
 </template>
 
@@ -61,12 +60,13 @@ export default {
       ],
       regionType: 1,
       regionList: [],
-      selectRegionDone: false,
-      showDelete: false
+      selectRegionDone: false
     }
   },
 
   mounted () {
+    this.addressId = this.$root.$mp.query.id
+    this.getAddressDetail()
     this.getRegionList(1)
   },
 
@@ -78,9 +78,50 @@ export default {
   },
 
   methods: {
+    async getAddressDetail () {
+      let res = await api.addressDetail(this.addressId)
+      if (res.errno === 0) {
+        this.address = res.data
+      }
+    },
 
     openSelectRegion () {
       this.popupVisible = !this.popupVisible
+
+      if (!this.popupVisible) {
+        return
+      }
+      let address = this.address
+      if (address.province_id > 0 && address.city_id > 0 && address.district_id > 0) {
+        this.selectRegionList.map((item, index) => {
+          if (index === 0) {
+            item.id = address.province_id
+            item.name = address.province_name
+            item.parent_id = 1
+          } else if (index === 1) {
+            item.id = address.city_id
+            item.name = address.city_name
+            item.parent_id = address.province_id
+          } else {
+            item.id = address.district_id
+            item.name = address.district_name
+            item.parent_id = address.city_id
+          }
+          return item
+        })
+        this.regionType = 3
+        this.getRegionList(address.city_id)
+      } else {
+        this.selectRegionList = [
+          { id: 0, name: '省份', parent_id: 1, type: 1 },
+          { id: 0, name: '城市', parent_id: 1, type: 2 },
+          { id: 0, name: '区县', parent_id: 1, type: 3 }
+        ]
+        this.regionType = 1
+        this.getRegionList(1)
+      }
+
+      this.setRegionDoneStatus()
     },
 
     async getRegionList (regionId) {
@@ -164,12 +205,6 @@ export default {
         return item.name
       }).join('')
       this.openSelectRegion()
-    },
-
-    cancelAddress () {
-      wx.reLaunch({
-        url: '/pages/address/addressList/main'
-      })
     },
 
     async saveAddress () {
@@ -282,8 +317,6 @@ export default {
   .region-select .done.disabled{
     color: #999;
   }
-
-
 
   .region-select .bd{
     height: 492rpx;

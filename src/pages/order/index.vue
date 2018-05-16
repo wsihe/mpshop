@@ -1,6 +1,6 @@
 <template lang="pug">
   .order
-    address-card(:type="addressType")
+    address-card(:type="addressType", :address="checkedAddress")
     .cart-item(v-for="(good, index) in checkedGoodsList", :key="good.id")
       wu-card(:title="good.goods_name", :num="good.number", :price="good.retail_price", :thumb="good.list_pic_url")
     .wu-panel
@@ -23,7 +23,7 @@
         .wu-submit-bar__price.wu-hairline--top
           span.wu-submit-bar__price-text 合计：
           span.wu-submit-bar__price-interger ¥{{actualPrice}}
-        button.wu-button.wu-submit-bar__btn(@click="") 结算
+        button.wu-button.wu-submit-bar__btn(@click="") 去付款
 </template>
 
 <script>
@@ -55,6 +55,10 @@ export default {
     wx.showLoading({
       title: '加载中...'
     })
+    let addressId = wx.getStorageSync('addressId')
+    if (addressId) {
+      this.addressId = addressId
+    }
     this.getCheckoutInfo()
   },
 

@@ -1,5 +1,5 @@
 <template lang="pug">
-  .address-card(:class="addressCls", @click="onClick")
+  .address-card(:class="addressCls", @click="clickCard")
     .address-card__content
       template(v-if="type === 'add'")
         wu-icon(name="add2")
@@ -7,8 +7,8 @@
       template(v-else-if="type === 'edit'")
         wu-icon(name="contact")
         .address-card__text
-          div {{ name }}，{{ tel }}
-          div 收货地址：{{ address }}
+          div {{addressObj.name}}，{{ addressObj.mobile }}
+          div 收货地址：{{addressObj.full_region + addressObj.address}}
     span.address-card__arrow
       wu-icon(name="arrow")
 </template>
@@ -27,18 +27,20 @@ export default {
     type: {
       type: String,
       default: 'add'
-    }
+    },
+    address: Object
   },
 
   data () {
     return {
-      tel: '13888888888',
-      name: '小茗',
-      address: '广州市天河区'
+      addressObj: Object.assign({}, this.address)
     }
   },
 
-  created () {
+  watch: {
+    address (val) {
+      this.addressObj = Object.assign({}, val)
+    }
   },
 
   computed: {
@@ -48,9 +50,9 @@ export default {
   },
 
   methods: {
-    onClick (event) {
+    clickCard () {
       let url = ''
-      if (this.type === 'add') {
+      if (this.type !== 'add') {
         url = '../address/addressList/main'
       } else {
         url = '../address/addressEdit/main'
