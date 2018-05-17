@@ -20,12 +20,14 @@
             i.wu-icon.wu-icon-logistics
             | 待发货
     .wu-panel
-      .wu-cell.wu-cell--access
-        .wu-cell__bd 全部订单
-        .wu-cell__ft
-      .wu-cell.wu-cell--access(@click="handleAddress")
-        .wu-cell__bd 收货地址
-        .wu-cell__ft
+      navigator(url="/pages/ucenter/order/main")
+        .wu-cell.wu-cell--access
+          .wu-cell__bd 全部订单
+          .wu-cell__ft
+      navigator(url="/pages/address/addressList/main")
+        .wu-cell.wu-cell--access
+          .wu-cell__bd 收货地址
+          .wu-cell__ft
       .wu-cell.wu-cell--access
         .wu-cell__bd 我的优惠券
         .wu-cell__ft
@@ -61,10 +63,6 @@
             })
           }
         })
-      },
-      handleAddress () {
-        const url = '../address/addressList/main'
-        wx.navigateTo({ url })
       }
     },
 

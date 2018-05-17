@@ -60,7 +60,7 @@ export default {
   },
 
   /**
-   * 添加商品到购物车
+   * 提交订单
    * @param addressId [地址ID]
    * @param couponId [优惠券ID]
    * @return {Promise}
@@ -127,5 +127,35 @@ export default {
       parentId
     }
     return request().get(urls.regionList, params)
+  },
+
+  /**
+   * 订单列表
+   * @return {Promise}
+   */
+  orderList () {
+    return request().get(urls.orderList)
+  },
+  /**
+   * 订单详情
+   * @param orderId [订单ID]
+   * @return {Promise}
+   */
+  orderDetail (orderId) {
+    const params = {
+      orderId
+    }
+    return request().get(urls.orderDetail, params)
+  },
+  /**
+   * 取消订单
+   * @param orderId [订单ID]
+   * @return {Promise}
+   */
+  orderCancel (orderId) {
+    const params = {
+      orderId
+    }
+    return request().post(urls.orderCancel, params)
   }
 }

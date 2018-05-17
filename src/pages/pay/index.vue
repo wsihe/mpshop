@@ -34,7 +34,7 @@ export default {
   },
 
   mounted () {
-    this.orderId = this.$root.$mp.orderId || 24
+    this.orderId = this.$root.$mp.query.orderId || 24
     this.status = this.$root.$mp.status
   },
 
