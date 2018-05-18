@@ -4,23 +4,29 @@
       swiper-item(v-for="(item, index) in banner", :key="index")
         navigator(:url="item.link")
           image(:src="item.image_url" background-size="cover")
-    ul.products
-      li.products-item(v-for="(item, index) in hotGoodsList", :key="index")
-        div(@click="handleViewTo(item.id)")
-          img.products-item-img(mode="scaleToFill", :src="item.list_pic_url")
-          .products-right
-            text.product-title {{item.name}}
-            span.product-desc {{item.goods_brief}}
-            .product-status
-              wu-icon(name="hot-sale")
-    ul.products
-      li.products-item(v-for="(item, index) in newGoodsList", :key="index")
-        div(@click="handleViewTo(item.id)")
-          img.products-item-img(mode="scaleToFill", :src="item.list_pic_url")
-          .products-right
-            text.product-title {{item.name}}
-            .product-status
-              wu-icon(name="new-arrival")
+
+    ul.a-section.a-new(v-if="newGoodsList.length > 0")
+      .h
+         p.txt 新品首发
+      .b
+        li.item(v-for="(item, index) in newGoodsList", :key="index")
+          div(@click="handleTo(item.id)")
+            image.img(:src="item.list_pic_url", background-size="cover")
+            p.name {{item.name}}
+            p.price ￥{{item.retail_price}}
+
+    ul.a-section.a-popular(v-if="hotGoodsList.length > 0")
+      .h
+        p.txt 人气推荐
+      .b
+        li.item(v-for="(item, index) in hotGoodsList", :key="index")
+          div(@click="handleTo(item.id)")
+            image.img(:src="item.list_pic_url", background-size="cover")
+            .right
+              .text
+                p.name {{item.name}}
+                p.desc {{item.goods_brief}}
+                p.price ￥{{item.retail_price}}
 </template>
 
 <script>
@@ -52,7 +58,7 @@ export default {
         this.hotGoodsList = res.data.hotGoodsList
       }
     },
-    handleViewTo (id) {
+    handleTo (id) {
       let url = `/pages/goods/main?id=${id}`
       wx.navigateTo({ url })
     }
@@ -72,56 +78,136 @@ export default {
     }
   }
 
-  .products-item {
-    border-radius: 4px;
-    margin: 20rpx;
-    padding: 10rpx;
+  .a-section {
+    width: 750rpx;
+    height: auto;
+    overflow: hidden;
     background: #fff;
-    box-shadow: 0 6px 25px 0 rgba(182,182,182,0.30);
-    .products-item-img {
-      width: 100%;
-      height: 250rpx;
-    }
+    color: #333;
+    margin-top: 20rpx;
   }
 
-  .products-right {
-    position: relative;
-    padding: 10rpx 10rpx 20rpx;
+  .a-section .h {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    height: 130rpx;
   }
-  .product-title {
-    margin-left: 10rpx;
+
+  .a-section .h .txt {
+    padding-right: 30rpx;
+    background-size: 16.656rpx 27rpx;
+    display: inline-block;
+    height: 36rpx;
+    font-size: 33rpx;
+    line-height: 36rpx;
   }
-  .product-desc {
-    display: block;
+
+  .a-new .b {
+    width: 750rpx;
+    height: auto;
+    overflow: hidden;
+    padding: 0 31rpx 45rpx 31rpx;
+  }
+
+  .a-new .b .item {
+    float: left;
+    width: 302rpx;
     margin-top: 10rpx;
-    margin-left: 10rpx;
-    padding-top: 15rpx;
-    border-top: 1px solid #ededed;
-    font-size: 14px;
-    color: #666;
+    margin-left: 21rpx;
+    margin-right: 21rpx;
   }
 
-  .product-status {
-    position: absolute;
-    top: 10rpx;
-    right: 10px;
-    .wu-icon {
-      font-size: 24px;
-    }
-    .wu-icon-new-arrival {
-      color: #3cc51f;
-    }
-    .wu-icon-hot-sale {
-      color: red;
-    }
+  .a-new .b .item-b {
+    margin-left: 42rpx;
   }
 
-  .slide-image {
-    position:relative;
-    width: 100%;
-    align-items:center;
-    justify-content:center;
+  .a-new .b .img {
+    width: 302rpx;
+    height: 302rpx;
   }
 
+  .a-new .b .name {
+    text-align: center;
+    display: block;
+    width: 302rpx;
+    height: 35rpx;
+    margin-bottom: 14rpx;
+    overflow: hidden;
+    font-size: 30rpx;
+    color: #333;
+  }
+
+  .a-new .b .price {
+    display: block;
+    text-align: center;
+    line-height: 30rpx;
+    font-size: 30rpx;
+    color: #b4282d;
+  }
+
+  .a-popular {
+    width: 750rpx;
+    height: auto;
+    overflow: hidden;
+  }
+
+  .a-popular .b .item {
+    border-top: 1px solid #d9d9d9;
+    margin: 0 20rpx;
+    height: 264rpx;
+    width: 710rpx;
+  }
+
+  .a-popular .b .img {
+    margin-top: 12rpx;
+    margin-right: 12rpx;
+    float: left;
+    width: 240rpx;
+    height: 240rpx;
+  }
+
+  .a-popular .b .right {
+    float: left;
+    height: 264rpx;
+    width: 456rpx;
+    display: flex;
+    flex-flow: row nowrap;
+  }
+
+  .a-popular .b .text {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    height: 264rpx;
+    width: 456rpx;
+  }
+
+  .a-popular .b .name {
+    width: 456rpx;
+    display: block;
+    color: #333;
+    line-height: 50rpx;
+    font-size: 30rpx;
+  }
+
+  .a-popular .b .desc {
+    width: 456rpx;
+    display: block;
+    color: #999;
+    line-height: 50rpx;
+    font-size: 25rpx;
+  }
+
+  .a-popular .b .price {
+    width: 456rpx;
+    display: block;
+    color: #b4282d;
+    line-height: 50rpx;
+    font-size: 33rpx;
+  }
 
 </style>
