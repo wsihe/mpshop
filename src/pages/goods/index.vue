@@ -5,7 +5,7 @@
         image.slide-image(:src="item.img_url" background-size="cover")
     .wu-panel
       .wu-cell
-        .goods-title {{ goods.name }}
+        .goods-title {{goods.name}}
         .goods-price ￥{{goods.retail_price}}
       .wu-cell
         .goods-desc {{ goods.goods_brief }}
@@ -24,16 +24,16 @@
         .goods-detail-content(v-html="goodsDesc")
     .wu-goods-action
       goods-action-btn(size="mini", icon="chat", text="客服")
-      goods-action-btn(size="mini", icon="cart", text="购物车", @click="switchTab")
-      goods-action-btn(size="big", text="加入购物车", @click="addToCart")
-      goods-action-btn(size="big", text="立即购买", primary="", @click="buy")
+      goods-action-btn(size="mini", icon="cart", text="购物车", @click="openCart", :info="cartGoodsCount")
+      goods-action-btn(size="big", text="加入购物车", @click="buy")
+      goods-action-btn(size="big", text="下单购买", primary="", @click="buy")
     .wu-pop.wu-pop--bottom(:class="popCls")
       .wu-pop__mask(@click="buy")
       .wu-pop__container
         .goods-sku
-          wu-card(title="标题", desc="描述", num="2", price="2.00", :thumb="imageURL")
+          wu-card(:title="goods.name", :desc="goods.goods_brief", :num="number", :price="goods.retail_price", :thumb="goods.list_pic_url")
           wu-stepper(v-model="number")
-          button.wu-btn.wu-btn--danger(@click="handleNext") 下一步
+          button.wu-btn.wu-btn--danger(@click="addToCart") 确定
     // wu-popup(v-model="popupVisible")
       .goods-more 121212
 </template>
@@ -78,12 +78,21 @@ export default {
 
   mounted () {
     wx.showNavigationBarLoading()
+
+    this.id = this.$root.$mp.query.id
     this.getGoodsInfo()
+    this.getCartGoodsCount()
   },
 
   methods: {
+    async getCartGoodsCount () {
+      let res = await api.cartGoodsCount()
+      if (res.errno === 0) {
+        this.cartGoodsCount = res.data.cartTotal.goodsCount
+      }
+    },
+
     async getGoodsInfo () {
-      this.id = this.$root.$mp.query.id
       let res = await api.goodsDetail(this.id)
       if (res.errno === 0) {
         this.goods = res.data.info
@@ -103,20 +112,21 @@ export default {
       const url = '../order/main'
       wx.navigateTo({ url })
     },
-    switchTab () {
+    openCart () {
       wx.switchTab({
         url: '/pages/cart/main'
       })
     },
 
-    async addToCart () {
+    async addToCart (bool) {
+      this.popupVisible = false
       if (this.goods.goods_number < this.number) {
         return false
       }
-
       // 添加到购物车
       let res = await api.cartAdd(this.goods.id, this.number, this.productList[0].id)
       if (res.errno === 0) {
+        // this.openCart()
         wx.showToast({title: '添加成功'})
         this.cartGoodsCount = res.data.cartTotal.goodsCount
       } else {

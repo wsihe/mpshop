@@ -44,6 +44,13 @@ export default {
   cartList () {
     return request().get(urls.cartList)
   },
+  /**
+   * 获取购物车商品件数
+   * @return {Promise}
+   */
+  cartGoodsCount () {
+    return request().get(urls.cartGoodsCount)
+  },
 
   /**
    * 添加商品到购物车

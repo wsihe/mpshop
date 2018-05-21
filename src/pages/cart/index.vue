@@ -40,7 +40,7 @@ export default {
     }
   },
 
-  mounted () {
+  onShow () {
     this.getCartList()
   },
 
