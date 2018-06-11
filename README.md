@@ -1,21 +1,33 @@
-# farm
+# Mpshop - 微信小程序端
 
-> A Mpvue project
+> 基于 Mpvue 的小程序
 
-## Build Setup
+### 项目运行
 
-``` bash
-# install dependencies
+```
+git clone https://github.com/wsihe/mpshop.git
+
+cd mpshop
+
 npm install
 
-# serve with hot reload at localhost:8080
 npm run dev
 
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+### 功能
+
+- 首页商品列表
+- 商品详情
+- 购物车
+- 会员中心
+
+### 项目截图
+
+![](./git-images/index.png)
+
+### 说明
+
+>  如果对您有帮助，您可以点右上角 "Star" 你的支持就是我的动力 谢谢！ ^_^
+
+>  如有问题请直接在 Issues 中提，或者你有更好的解决方案，欢迎 PR
